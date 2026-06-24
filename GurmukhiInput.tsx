@@ -1,0 +1,43 @@
+'use client';
+
+import { forwardRef } from 'react';
+import { useGurmukhiInput } from './useGurmukhiInput';
+
+interface GurmukhiInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  value: string;
+  onChange: (v: string) => void;
+  // Disable transliteration (plain input)
+  transliterate?: boolean;
+  // Enable pattern-mode passthrough for { } _ * syntax
+  patternMode?: boolean;
+}
+
+// Drop-in <input> replacement that automatically converts roman keystrokes
+// to Gurmukhi unicode. Paste of existing Gurmukhi unicode passes through.
+// Paste of ASCII is also converted.
+const GurmukhiInput = forwardRef<HTMLInputElement, GurmukhiInputProps>(
+  function GurmukhiInput(
+    { value, onChange, transliterate = true, patternMode = false, onKeyDown: externalKeyDown, onPaste: externalPaste, ...rest },
+    ref,
+  ) {
+    const { onKeyDown, onPaste } = useGurmukhiInput({
+      value,
+      onChange,
+      enabled: transliterate,
+      patternMode,
+    });
+
+    return (
+      <input
+        ref={ref}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        onKeyDown={e => { onKeyDown(e); externalKeyDown?.(e); }}
+        onPaste={e => { onPaste(e); externalPaste?.(e); }}
+        {...rest}
+      />
+    );
+  },
+);
+
+export default GurmukhiInput;

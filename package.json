@@ -1,0 +1,54 @@
+{
+  "name": "@atthebunga/gurmukhi-input",
+  "version": "1.2.1",
+  "description": "React hook, component, and on-screen keyboard for real-time Gurmukhi phonetic input",
+  "keywords": [
+    "gurmukhi",
+    "punjabi",
+    "phonetic",
+    "keyboard",
+    "react",
+    "transliterate",
+    "unicode"
+  ],
+  "author": "Himmat Singh Khalsa",
+  "license": "MIT",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thehimmat/gurmukhi-input.git"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./keyboard": {
+      "types": "./dist/keyboard.d.ts",
+      "import": "./dist/keyboard.mjs",
+      "require": "./dist/keyboard.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup index.ts keyboard.ts --format esm,cjs --dts --external react",
+    "dev": "tsup index.ts keyboard.ts --format esm,cjs --dts --external react --watch"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "react": "^19",
+    "tsup": "^8.5.1",
+    "typescript": "^5"
+  }
+}
