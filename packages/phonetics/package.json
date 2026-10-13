@@ -1,0 +1,52 @@
+{
+  "name": "@atthebunga/gurmukhi-phonetics",
+  "version": "0.1.0",
+  "description": "Gurmukhi to IPA pronunciation, and a fuzzy phonetic key for matching spoken or romanized queries",
+  "keywords": [
+    "gurmukhi",
+    "punjabi",
+    "gurbani",
+    "ipa",
+    "pronunciation",
+    "phonetics",
+    "fuzzy-search"
+  ],
+  "author": "Himmat Singh Khalsa",
+  "license": "MIT",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thehimmat/gurmukhi-input.git",
+    "directory": "packages/phonetics"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./rules.json": "./data/rules.json"
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5"
+  }
+}
