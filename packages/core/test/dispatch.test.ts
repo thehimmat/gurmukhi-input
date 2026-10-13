@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { LAYOUTS } from '../layouts';
-import { resolveKeydown, stripDeadKeyArtifacts, type KeyEventLike } from '../dispatch';
+import { LAYOUTS } from '../src/layouts';
+import { resolveKeydown, stripDeadKeyArtifacts, type KeyEventLike } from '../src/dispatch';
 
 const igurbani = LAYOUTS.igurbani;
 const qwerty = LAYOUTS['gurmukhi-qwerty'];

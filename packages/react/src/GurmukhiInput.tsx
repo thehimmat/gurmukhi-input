@@ -1,7 +1,7 @@
 'use client';
 
 import { forwardRef } from 'react';
-import type { Layout } from './layouts';
+import type { Layout } from '@atthebunga/gurmukhi-core';
 import { useGurmukhiInput } from './useGurmukhiInput';
 
 interface GurmukhiInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {

@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { Layout } from './layouts';
-import { resolveKeyboard } from './keyboard';
+import type { Layout } from '@atthebunga/gurmukhi-core';
+import { resolveKeyboard } from '@atthebunga/gurmukhi-core';
 
 interface GurmukhiKeyboardProps {
   // 'igurbani' | 'gurmukhi-qwerty' | a custom Layout object. Default 'gurmukhi-qwerty'.
