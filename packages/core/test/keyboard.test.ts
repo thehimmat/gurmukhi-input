@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { resolveKeyboard } from '../keyboard';
-import { isCombiningGurmukhi, isGurmukhiChar, isGurmukhiConsonant } from '../keymap';
+import { resolveKeyboard } from '../src/keyboard';
+import { isCombiningGurmukhi, isGurmukhiChar, isGurmukhiConsonant } from '../src/keymap';
 
 function find(rows: ReturnType<typeof resolveKeyboard>, code: string) {
   return rows.flat().find(k => k.code === code)!;

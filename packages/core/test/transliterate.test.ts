@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { LAYOUTS } from '../layouts';
-import { resolveKey, romanToGurmukhi } from '../transliterate';
+import { LAYOUTS } from '../src/layouts';
+import { resolveKey, romanToGurmukhi } from '../src/transliterate';
 
 const igurbani = LAYOUTS.igurbani;
 const qwerty = LAYOUTS['gurmukhi-qwerty'];

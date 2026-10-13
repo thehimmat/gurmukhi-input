@@ -1,0 +1,62 @@
+{
+  "name": "@atthebunga/gurmukhi-input",
+  "version": "1.4.0",
+  "description": "React hook, component, and on-screen keyboard for real-time Gurmukhi phonetic input",
+  "keywords": [
+    "gurmukhi",
+    "punjabi",
+    "phonetic",
+    "keyboard",
+    "react",
+    "transliterate",
+    "unicode"
+  ],
+  "author": "Himmat Singh Khalsa",
+  "license": "MIT",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thehimmat/gurmukhi-input.git",
+    "directory": "packages/react"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./keyboard": {
+      "types": "./dist/keyboard.d.ts",
+      "import": "./dist/keyboard.mjs",
+      "require": "./dist/keyboard.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts src/keyboard.ts --format esm,cjs --dts --clean --external react",
+    "dev": "tsup src/index.ts src/keyboard.ts --format esm,cjs --dts --external react --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@atthebunga/gurmukhi-core": "workspace:^"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "jsdom": "^26.1.0",
+    "react": "^19",
+    "react-dom": "^19"
+  }
+}
