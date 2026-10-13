@@ -1,0 +1,45 @@
+{
+  "name": "@atthebunga/gurmukhi-element",
+  "version": "0.1.0",
+  "description": "Gurmukhi phonetic input for any framework or plain HTML: <gurmukhi-input>, <gurmukhi-keyboard>, and attachGurmukhi()",
+  "keywords": ["gurmukhi", "punjabi", "phonetic", "keyboard", "web-component", "custom-element", "transliterate", "unicode"],
+  "author": "Himmat Singh Khalsa",
+  "license": "MIT",
+  "sideEffects": ["./dist/define.*", "./dist/cdn.js"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thehimmat/gurmukhi-input.git",
+    "directory": "packages/element"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "jsdelivr": "./dist/cdn.js",
+  "unpkg": "./dist/cdn.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./define": {
+      "types": "./dist/define.d.ts",
+      "import": "./dist/define.mjs",
+      "require": "./dist/define.js"
+    },
+    "./cdn": "./dist/cdn.js"
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "rm -rf dist && tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@atthebunga/gurmukhi-core": "workspace:^"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  }
+}

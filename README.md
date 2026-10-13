@@ -6,6 +6,7 @@ Real-time Gurmukhi phonetic input: type roman keys, get Gurmukhi Unicode.
 |---|---|
 | [`@atthebunga/gurmukhi-core`](packages/core) | The framework-agnostic engine: layouts, keystroke resolution and a pure editing controller |
 | [`@atthebunga/gurmukhi-input`](packages/react) | React hook, `<GurmukhiInput>` and on-screen keyboard |
+| [`@atthebunga/gurmukhi-element`](packages/element) | `<gurmukhi-input>`, `<gurmukhi-keyboard>` and `attachGurmukhi()` for any framework or plain HTML, plus a CDN build |
 
 ## Development
 
