@@ -1,28 +1,22 @@
-import {
-  CONSONANT_KEY_MAP,
-  VOWEL_STANDALONE,
-  VOWEL_MATRAS,
-  MARK_MAP,
-  isGurmukhiConsonant,
-  lastGurmukhiBase,
-} from './keymap';
+import type { Layout } from './layouts';
+import { isGurmukhiConsonant, lastGurmukhiBase } from './keymap';
 
 // Given the text before the cursor and a typed key, return the Gurmukhi
-// character to insert (or null if the key has no mapping).
-export function resolveKey(key: string, textBefore: string): string | null {
-  // Marks are always combining — no context needed
-  if (key in MARK_MAP) return MARK_MAP[key];
+// character to insert (or null if the key has no mapping in this layout).
+export function resolveKey(
+  key: string,        // e.key — the character the key produces
+  textBefore: string, // value to the left of the cursor
+  layout: Layout,
+): string | null {
+  if (key in layout.keys) return layout.keys[key];
 
-  // Consonant keys
-  if (key in CONSONANT_KEY_MAP) return CONSONANT_KEY_MAP[key];
-
-  // Vowel keys: decide standalone vs matra based on preceding character
-  if (key in VOWEL_STANDALONE) {
+  // Context-sensitive vowels: matra after a consonant, standalone otherwise
+  if (layout.vowelStandalone && key in layout.vowelStandalone) {
     const prev = lastGurmukhiBase(textBefore);
     if (prev && isGurmukhiConsonant(prev)) {
-      return VOWEL_MATRAS[key];
+      return layout.vowelMatra![key];
     }
-    return VOWEL_STANDALONE[key];
+    return layout.vowelStandalone[key];
   }
 
   return null;
@@ -30,9 +24,13 @@ export function resolveKey(key: string, textBefore: string): string | null {
 
 // Convert a full roman string to Gurmukhi (no context — treats each char as
 // standalone). Useful for batch conversion or first-letter search mode.
-export function romanToGurmukhi(roman: string): string {
+export function romanToGurmukhi(roman: string, layout: Layout): string {
   return roman
     .split('')
-    .map(ch => CONSONANT_KEY_MAP[ch] ?? VOWEL_STANDALONE[ch] ?? MARK_MAP[ch] ?? ch)
+    .map(ch => {
+      if (ch in layout.keys) return layout.keys[ch];
+      if (layout.vowelStandalone?.[ch]) return layout.vowelStandalone[ch];
+      return ch;
+    })
     .join('');
 }

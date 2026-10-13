@@ -1,6 +1,6 @@
 {
   "name": "@atthebunga/gurmukhi-input",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "React hook, component, and on-screen keyboard for real-time Gurmukhi phonetic input",
   "keywords": [
     "gurmukhi",
@@ -39,8 +39,10 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsup index.ts keyboard.ts --format esm,cjs --dts --external react",
-    "dev": "tsup index.ts keyboard.ts --format esm,cjs --dts --external react --watch"
+    "build": "tsup index.ts keyboard.ts --format esm,cjs --dts --clean --external react",
+    "dev": "tsup index.ts keyboard.ts --format esm,cjs --dts --external react --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   },
   "peerDependencies": {
     "react": ">=18"
@@ -49,6 +51,8 @@
     "@types/react": "^19",
     "react": "^19",
     "tsup": "^8.5.1",
-    "typescript": "^5"
-  }
+    "typescript": "^5",
+    "vitest": "^3.2.6"
+  },
+  "packageManager": "pnpm@10.28.0"
 }
