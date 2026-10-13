@@ -1,7 +1,7 @@
 import type { Layout } from './layouts';
-import { LAYOUTS } from './layouts';
 import { isCombiningGurmukhi } from './keymap';
 import { US_ANSI_ROWS } from './geometry';
+import { resolveLayout } from './editor';
 
 export type Modifiers = { shift?: boolean; option?: boolean };
 
@@ -14,19 +14,10 @@ export type ResolvedKey = {
 
 const DOTTED_CIRCLE = '◌';
 
-function toLayout(layout: string | Layout): Layout {
-  if (typeof layout === 'string') {
-    const found = LAYOUTS[layout];
-    if (!found) throw new Error(`@atthebunga/gurmukhi-input: unknown layout "${layout}"`);
-    return found;
-  }
-  return layout;
-}
-
 // Resolve every physical key to what the given layout produces under the
 // current modifier state. Returns rows matching US_ANSI_ROWS.
 export function resolveKeyboard(layout: string | Layout, mods: Modifiers): ResolvedKey[][] {
-  const lay = toLayout(layout);
+  const lay = resolveLayout(layout);
 
   return US_ANSI_ROWS.map(row =>
     row.map(pk => {
@@ -46,9 +37,3 @@ export function resolveKeyboard(layout: string | Layout, mods: Modifiers): Resol
     }),
   );
 }
-
-export { US_ANSI_ROWS } from './geometry';
-export type { PhysicalKey } from './geometry';
-export { default as GurmukhiKeyboard } from './GurmukhiKeyboard';
-export type { Layout } from './layouts';
-export { LAYOUTS } from './layouts';

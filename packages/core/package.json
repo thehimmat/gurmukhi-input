@@ -1,0 +1,45 @@
+{
+  "name": "@atthebunga/gurmukhi-core",
+  "version": "0.1.0",
+  "description": "Framework-agnostic engine for real-time Gurmukhi phonetic input: layouts, keystroke resolution, and a pure editing controller",
+  "keywords": [
+    "gurmukhi",
+    "punjabi",
+    "phonetic",
+    "keyboard",
+    "transliterate",
+    "unicode"
+  ],
+  "author": "Himmat Singh Khalsa",
+  "license": "MIT",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thehimmat/gurmukhi-input.git",
+    "directory": "packages/core"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./fixtures/keystrokes.json": "./fixtures/keystrokes.json",
+    "./fixtures/keystrokes.schema.json": "./fixtures/keystrokes.schema.json"
+  },
+  "files": [
+    "dist",
+    "fixtures",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  }
+}
