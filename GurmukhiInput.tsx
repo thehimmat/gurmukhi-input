@@ -1,11 +1,14 @@
 'use client';
 
 import { forwardRef } from 'react';
+import type { Layout } from './layouts';
 import { useGurmukhiInput } from './useGurmukhiInput';
 
 interface GurmukhiInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   value: string;
   onChange: (v: string) => void;
+  // 'igurbani' (default) | 'gurmukhi-qwerty' | a custom Layout object
+  layout?: string | Layout;
   // Disable transliteration (plain input)
   transliterate?: boolean;
   // Enable pattern-mode passthrough for { } _ * syntax
@@ -17,12 +20,22 @@ interface GurmukhiInputProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
 // Paste of ASCII is also converted.
 const GurmukhiInput = forwardRef<HTMLInputElement, GurmukhiInputProps>(
   function GurmukhiInput(
-    { value, onChange, transliterate = true, patternMode = false, onKeyDown: externalKeyDown, onPaste: externalPaste, ...rest },
+    {
+      value,
+      onChange,
+      layout = 'igurbani',
+      transliterate = true,
+      patternMode = false,
+      onKeyDown: externalKeyDown,
+      onPaste: externalPaste,
+      ...rest
+    },
     ref,
   ) {
     const { onKeyDown, onPaste } = useGurmukhiInput({
       value,
       onChange,
+      layout,
       enabled: transliterate,
       patternMode,
     });
