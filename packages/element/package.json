@@ -2,10 +2,22 @@
   "name": "@atthebunga/gurmukhi-element",
   "version": "0.1.0",
   "description": "Gurmukhi phonetic input for any framework or plain HTML: <gurmukhi-input>, <gurmukhi-keyboard>, and attachGurmukhi()",
-  "keywords": ["gurmukhi", "punjabi", "phonetic", "keyboard", "web-component", "custom-element", "transliterate", "unicode"],
+  "keywords": [
+    "gurmukhi",
+    "punjabi",
+    "phonetic",
+    "keyboard",
+    "web-component",
+    "custom-element",
+    "transliterate",
+    "unicode"
+  ],
   "author": "Himmat Singh Khalsa",
   "license": "MIT",
-  "sideEffects": ["./dist/define.*", "./dist/cdn.js"],
+  "sideEffects": [
+    "./dist/define.*",
+    "./dist/cdn.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thehimmat/gurmukhi-input.git",
@@ -29,7 +41,15 @@
     },
     "./cdn": "./dist/cdn.js"
   },
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "rm -rf dist && tsup",
     "dev": "tsup --watch",

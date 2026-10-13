@@ -17,6 +17,10 @@ pnpm check   # build, typecheck and test every package
 
 The core is built before the packages that depend on it, so run `pnpm check` (or `pnpm build`) once before running the React tests on their own.
 
+## Releasing
+
+Releases use [changesets](https://github.com/changesets/changesets). A PR that changes a published package adds one with `pnpm changeset`. On merge, the Release workflow opens a "Version packages" PR, and merging that publishes to npm with provenance. CI runs `pnpm check` on every PR.
+
 ## License
 
 MIT
