@@ -5,9 +5,13 @@
     "build": "pnpm -r build",
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck",
-    "check": "pnpm -r build && pnpm -r typecheck && pnpm -r test"
+    "check": "pnpm -r build && pnpm -r typecheck && pnpm -r test",
+    "changeset": "changeset",
+    "version-packages": "changeset version && pnpm install --lockfile-only",
+    "release": "pnpm check && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.31.1",
     "tsup": "^8.5.1",
     "typescript": "^5",
     "vitest": "^3.2.6"

@@ -39,6 +39,10 @@
     "README.md",
     "LICENSE"
   ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup src/index.ts src/keyboard.ts --format esm,cjs --dts --clean --external react",
     "dev": "tsup src/index.ts src/keyboard.ts --format esm,cjs --dts --external react --watch",
