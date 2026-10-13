@@ -1,0 +1,35 @@
+{
+  "name": "@atthebunga/gurmukhi-search-utils",
+  "version": "0.1.0",
+  "description": "Gurmukhi search building blocks: spelling-variant folding, first-letter search, word tokenizing, syllable parsing, and a {category} pattern language",
+  "keywords": ["gurmukhi", "punjabi", "gurbani", "search", "first-letter", "fuzzy-search", "normalize", "regex"],
+  "author": "Himmat Singh Khalsa",
+  "license": "MIT",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thehimmat/gurmukhi-input.git",
+    "directory": "packages/search-utils"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  }
+}

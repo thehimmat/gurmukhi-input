@@ -29,6 +29,14 @@ A deliberately lossy key. It removes the distinctions a listener can't reliably 
 
 The key is **stable**. It is identical to the keys `gurmukhi-voice-search` stores in `words.phonetic_ipa`, including one known quirk: independent vowels get an inherent schwa (`ਅਉ` → `aaua`). Fixing that would change about 25% of the stored keys, so it will come as a major version bump with a re-index.
 
+## `romanPhoneticKey(text)`
+
+Maps a romanized query toward the same alphabet: `wh`/`w` → `v`, `ee` → `i`, `oo` → `u`, `aa` → `a`, aspirates such as `bh`/`dh` → `b`/`d`, and so on. It's approximate by design, so compare its output to stored keys with a similarity measure (for example Postgres trigrams), not equality.
+
+```ts
+romanPhoneticKey('Waheguru'); // 'vaheguru'  (phoneticKey('ਵਾਹਿਗੁਰੂ') is 'vahiguru')
+```
+
 ## Rules
 
 The conversion is data-driven. The rules are exported from [gurmukhi-rule-builder](https://github.com/thehimmat/gurmukhi-rule-builder) and shipped as `@atthebunga/gurmukhi-phonetics/rules.json`, and also exported as `rules`.

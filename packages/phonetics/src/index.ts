@@ -4,6 +4,7 @@ import { normalizeIPA } from './normalize';
 export { rules } from './convert';
 export type { Rules } from './convert';
 export { normalizeIPA } from './normalize';
+export { romanPhoneticKey } from './roman';
 
 export type IpaOptions = {
   // Keep the trailing inherent schwa on a word-final bare consonant. Default
