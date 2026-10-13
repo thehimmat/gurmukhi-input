@@ -39,6 +39,10 @@ On macOS, some Option-layer keys are dead keys. For those, `applyKeydown` sets `
 - `resolveKeyboard`, `US_ANSI_ROWS`: data for drawing an on-screen keyboard.
 - `isGurmukhiChar`, `isGurmukhiConsonant`, `isCombiningGurmukhi`, `lastGurmukhiBase`: Unicode helpers.
 
+## Conformance fixtures
+
+The expected behaviour lives in `fixtures/keystrokes.json`: language-neutral test vectors that ship with the package (`@atthebunga/gurmukhi-core/fixtures/keystrokes.json`). Core and every framework binding run them, and ports to other languages should too. See [`fixtures/README.md`](fixtures/README.md) for how to run a case.
+
 See the [React package README](../react/README.md) for full layout tables.
 
 ## License

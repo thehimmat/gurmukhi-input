@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Gurmukhi input conformance cases",
+  "description": "Language-neutral test vectors. Each case starts from a field state, applies steps through the editing controller, and checks the final field state. Offsets are UTF-16 code units, like DOM selectionStart.",
+  "type": "object",
+  "required": ["version", "cases"],
+  "properties": {
+    "version": { "const": 1 },
+    "cases": { "type": "array", "items": { "$ref": "#/$defs/case" } }
+  },
+  "$defs": {
+    "case": {
+      "type": "object",
+      "required": ["name", "layout", "steps", "expected"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "layout": { "enum": ["igurbani", "gurmukhi-qwerty"] },
+        "patternMode": { "type": "boolean" },
+        "start": { "$ref": "#/$defs/state" },
+        "steps": { "type": "array", "items": { "$ref": "#/$defs/step" }, "minItems": 1 },
+        "expected": { "$ref": "#/$defs/state" }
+      }
+    },
+    "state": {
+      "description": "Field state. selection defaults to a caret at the end of value.",
+      "type": "object",
+      "required": ["value"],
+      "additionalProperties": false,
+      "properties": {
+        "value": { "type": "string" },
+        "selection": { "type": "array", "items": { "type": "integer", "minimum": 0 }, "minItems": 2, "maxItems": 2 },
+        "endComposition": { "type": "boolean", "description": "Expected only on a case whose last step is a dead key." }
+      }
+    },
+    "step": {
+      "oneOf": [
+        {
+          "description": "A typed string: one keydown per character, no modifiers.",
+          "type": "object", "required": ["type"], "additionalProperties": false,
+          "properties": { "type": { "type": "string", "minLength": 1 } }
+        },
+        {
+          "description": "A single keydown with explicit fields.",
+          "type": "object", "required": ["key"], "additionalProperties": false,
+          "properties": {
+            "key": { "type": "string" },
+            "code": { "type": "string" },
+            "shift": { "type": "boolean" },
+            "alt": { "type": "boolean" },
+            "meta": { "type": "boolean" },
+            "ctrl": { "type": "boolean" }
+          }
+        },
+        {
+          "description": "A paste of plain text.",
+          "type": "object", "required": ["paste"], "additionalProperties": false,
+          "properties": { "paste": { "type": "string" } }
+        }
+      ]
+    }
+  }
+}
