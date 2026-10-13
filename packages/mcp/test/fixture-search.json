@@ -1,0 +1,70 @@
+{
+ "lines": [
+  {
+   "id": 1,
+   "verse_id": 1,
+   "shabad_id": 1,
+   "ang": 1,
+   "line_no": 1,
+   "gurmukhi": "ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+   "translation_en": "One Universal Creator God. The Name Is Truth. Creative Being Personified. No Fear. No Hatred. Image Of The Undying, Beyond Birth, Self-Existent. By Guru's Grace ~",
+   "transliteration_en": "ikOankaar sat naam karataa purakh nirabhau niravair akaal moorat ajoonee saibha(n) gur prasaadh ||",
+   "source_id": "G",
+   "source_fk": 1,
+   "corpus_rank": 0,
+   "shabads": {
+    "ang_start": 1,
+    "writer_id": 1,
+    "raag_english": "Jap",
+    "raag_gurmukhi": "ਜਪ",
+    "writer_english": "Guru Nanak Dev Ji"
+   }
+  },
+  {
+   "id": 89,
+   "verse_id": 89,
+   "shabad_id": 12,
+   "ang": 3,
+   "line_no": 6,
+   "gurmukhi": "ਐਸਾ ਨਾਮੁ ਨਿਰੰਜਨੁ ਹੋਇ ॥",
+   "translation_en": "Such is the Name of the Immaculate Lord.",
+   "transliteration_en": "aaisaa naam nira(n)jan hoi ||",
+   "source_id": "G",
+   "source_fk": 1,
+   "corpus_rank": 0,
+   "shabads": {
+    "ang_start": 3,
+    "writer_id": 1,
+    "raag_english": "Jap",
+    "raag_gurmukhi": "ਜਪ",
+    "writer_english": "Guru Nanak Dev Ji"
+   }
+  },
+  {
+   "id": 95,
+   "verse_id": 95,
+   "shabad_id": 13,
+   "ang": 3,
+   "line_no": 7,
+   "gurmukhi": "ਐਸਾ ਨਾਮੁ ਨਿਰੰਜਨੁ ਹੋਇ ॥",
+   "translation_en": "Such is the Name of the Immaculate Lord.",
+   "transliteration_en": "aaisaa naam nira(n)jan hoi ||",
+   "source_id": "G",
+   "source_fk": 1,
+   "corpus_rank": 0,
+   "shabads": {
+    "ang_start": 3,
+    "writer_id": 1,
+    "raag_english": "Jap",
+    "raag_gurmukhi": "ਜਪ",
+    "writer_english": "Guru Nanak Dev Ji"
+   }
+  }
+ ],
+ "words": null,
+ "total": 3464,
+ "hasMore": null,
+ "numberRoles": null,
+ "page": 0,
+ "pageSize": 20
+}

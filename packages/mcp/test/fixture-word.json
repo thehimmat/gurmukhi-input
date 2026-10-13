@@ -1,0 +1,328 @@
+{
+ "word": {
+  "id": 3,
+  "gurmukhi": "ਨਾਮੁ",
+  "frequency": 3531
+ },
+ "pronunciation": {
+  "ipa_display": "n̪aːmʊ",
+  "roman_iso15919": null,
+  "roman_practical": null
+ },
+ "grammar": [
+  {
+   "id": 54643,
+   "pos": "masculine, masculine noun",
+   "notes": "posRaw: m.",
+   "gender": "masculine",
+   "number": null,
+   "person": null,
+   "word_id": 3,
+   "gram_case": null,
+   "rule_code": null,
+   "verb_form": null,
+   "confidence": null,
+   "created_at": "2026-10-07T23:21:55.31397+00:00",
+   "provenance": "imported",
+   "reviewed_at": null,
+   "reviewed_by": null,
+   "source_code": "shackle",
+   "curation_note": null,
+   "definition_id": 178751,
+   "grammar_rules": null,
+   "review_status": "unreviewed",
+   "source_line_id": null
+  }
+ ],
+ "grammar_caveats": [],
+ "definitions": [
+  {
+   "id": 2,
+   "sense_number": 1,
+   "definition_text": "ਦੇਖੋ, ਨਾਮ. \"ਐਸਾ ਨਾਮੁ ਨਿਰੰਜਨੁ ਹੋਇ.\" (ਜਪੁ)",
+   "definition_en": null,
+   "cross_refs": null,
+   "source_url": "https://www.searchgurbani.com/mahan-kosh/view?word=%E0%A8%A8%E0%A8%BE%E0%A8%AE%E0%A9%81",
+   "entry_gurmukhi": "ਨਾਮੁ",
+   "notes": null,
+   "provenance": "scraped",
+   "review_status": "unreviewed",
+   "dict_sources": {
+    "url": "https://www.searchgurbani.com/sggs-kosh",
+    "code": "mahan_kosh",
+    "name": "Mahan Kosh (Bhai Kahn Singh Nabha)",
+    "language": "pa"
+   }
+  },
+  {
+   "id": 182262,
+   "sense_number": 2,
+   "definition_text": "ਪ੍ਰਸਿੱਧ, \"ਨਾਨਕ ਨਾਮੁ ਨਾਮੁ ਜਪੁ ਜਪਿਆ.\" (ਬਾਵਨ)",
+   "definition_en": null,
+   "cross_refs": null,
+   "source_url": "https://www.searchgurbani.com/mahan-kosh/view?word=%E0%A8%A8%E0%A8%BE%E0%A8%AE%E0%A9%81",
+   "entry_gurmukhi": "ਨਾਮੁ",
+   "notes": null,
+   "provenance": "scraped",
+   "review_status": "unreviewed",
+   "dict_sources": {
+    "url": "https://www.searchgurbani.com/sggs-kosh",
+    "code": "mahan_kosh",
+    "name": "Mahan Kosh (Bhai Kahn Singh Nabha)",
+    "language": "pa"
+   }
+  },
+  {
+   "id": 178751,
+   "sense_number": 1,
+   "definition_text": "name; good name, fame, honour, repute; (esp.) the divine Name, the total of God's attributes",
+   "definition_en": "name; good name, fame, honour, repute; (esp.) the divine Name, the total of God's attributes",
+   "cross_refs": null,
+   "source_url": null,
+   "entry_gurmukhi": "ਨਾਮੁ",
+   "notes": "inflections: (-aṁʳ, -ā, -û, -o) | usage: nāma rate (nāme rāte), mp. 'those steeped in the Name'; nāmi samāi¹ 'be absorbed in the Name'; nāmu simari 'remember the Name'; nāmu japi, le 'repeat the Name'; nāmu dhiāi 'meditate on the Name'; nāmu bīcāri, vīcāri 'ponder the Name' | shackle-freq: 715",
+   "provenance": "imported",
+   "review_status": "unreviewed",
+   "dict_sources": {
+    "url": "https://www.routledge.com/A-Guru-Nanak-Glossary/Shackle/p/book/9780728603431",
+    "code": "shackle",
+    "name": "A Guru Nanak Glossary (Christopher Shackle)",
+    "language": "en"
+   }
+  }
+ ],
+ "etymology": [
+  {
+   "id": 56203,
+   "order_index": 1,
+   "origin_language": "Sanskrit",
+   "root_form": null,
+   "root_form_roman": "nāman-",
+   "derivation_note": null,
+   "source_text": "Sk. nāman-: cf. NĀṀU"
+  }
+ ],
+ "morphological_variants": [
+  {
+   "gurmukhi": "ਨਾਮੰ",
+   "inflection_desc": null,
+   "source_code": "shackle",
+   "rule_code": null,
+   "rule_verified": null
+  },
+  {
+   "gurmukhi": "ਨਾਮਾ",
+   "inflection_desc": null,
+   "source_code": "shackle",
+   "rule_code": null,
+   "rule_verified": null
+  },
+  {
+   "gurmukhi": "ਨਾਮੋ",
+   "inflection_desc": null,
+   "source_code": "shackle",
+   "rule_code": null,
+   "rule_verified": null
+  }
+ ],
+ "usage": {
+  "phrases": [
+   {
+    "w1": "ਹਰਿ",
+    "w2": "ਨਾਮੁ",
+    "count": 711
+   },
+   {
+    "w1": "ਨਾਨਕ",
+    "w2": "ਨਾਮੁ",
+    "count": 222
+   },
+   {
+    "w1": "ਰਾਮ",
+    "w2": "ਨਾਮੁ",
+    "count": 194
+   },
+   {
+    "w1": "ਨਾਮੁ",
+    "w2": "ਨ",
+    "count": 146
+   },
+   {
+    "w1": "ਕਾ",
+    "w2": "ਨਾਮੁ",
+    "count": 127
+   },
+   {
+    "w1": "ਨਾਮੁ",
+    "w2": "ਨਿਧਾਨੁ",
+    "count": 107
+   },
+   {
+    "w1": "ਗੁਰਮੁਖਿ",
+    "w2": "ਨਾਮੁ",
+    "count": 100
+   },
+   {
+    "w1": "ਅੰਮ੍ਰਿਤ",
+    "w2": "ਨਾਮੁ",
+    "count": 90
+   },
+   {
+    "w1": "ਨਾਮੁ",
+    "w2": "ਧਿਆਇਆ",
+    "count": 75
+   },
+   {
+    "w1": "ਨਾਮੁ",
+    "w2": "ਧਿਆਇ",
+    "count": 65
+   },
+   {
+    "w1": "ਨਾਮੁ",
+    "w2": "ਜਪਤ",
+    "count": 63
+   },
+   {
+    "w1": "ਸਚੁ",
+    "w2": "ਨਾਮੁ",
+    "count": 55
+   },
+   {
+    "w1": "ਨਾਮੁ",
+    "w2": "ਹਰਿ",
+    "count": 55
+   },
+   {
+    "w1": "ਨਾਮੁ",
+    "w2": "ਹੈ",
+    "count": 52
+   },
+   {
+    "w1": "ਨਾਮੁ",
+    "w2": "ਧਿਆਈਐ",
+    "count": 49
+   }
+  ],
+  "collocations": [
+   {
+    "word": "ਅਵਖਧੁ",
+    "count": 7,
+    "pmi": 6.87786728473476
+   },
+   {
+    "word": "ਜਪਾਵੈ",
+    "count": 8,
+    "pmi": 6.87786728473476
+   },
+   {
+    "word": "ਦਿੜਾਇਆ",
+    "count": 8,
+    "pmi": 6.70794228329245
+   },
+   {
+    "word": "ਲੈਤ",
+    "count": 21,
+    "pmi": 6.68522220679236
+   },
+   {
+    "word": "ਦ੍ਰਿੜਾਇਓ",
+    "count": 6,
+    "pmi": 6.65547486339831
+   },
+   {
+    "word": "ਧਿਆਵਣਿਆ",
+    "count": 9,
+    "pmi": 6.58836066753977
+   },
+   {
+    "word": "ਸਲਾਹਨਿ",
+    "count": 8,
+    "pmi": 6.5559391898474
+   },
+   {
+    "word": "ਜਪਾਇਆ",
+    "count": 7,
+    "pmi": 6.51529720535005
+   },
+   {
+    "word": "ਦ੍ਰਿੜਾਵੈ",
+    "count": 8,
+    "pmi": 6.41843566609746
+   },
+   {
+    "word": "ਚੇਤਨੀ",
+    "count": 5,
+    "pmi": 6.39244045756452
+   },
+   {
+    "word": "ਅਛਲੁ",
+    "count": 5,
+    "pmi": 6.39244045756452
+   },
+   {
+    "word": "ਦ੍ਰਿੜਾਇਆ",
+    "count": 28,
+    "pmi": 6.22579058815507
+   },
+   {
+    "word": "ਸਲਾਹਿ",
+    "count": 15,
+    "pmi": 6.19979537962212
+   },
+   {
+    "word": "ਅਮੋਲਕੁ",
+    "count": 10,
+    "pmi": 6.19979537962212
+   },
+   {
+    "word": "ਜਪਹੁ",
+    "count": 49,
+    "pmi": 6.15272712596534
+   }
+  ]
+ },
+ "stats": {
+  "writers": [
+   {
+    "writer": "Guru Arjan Dev Ji",
+    "count": 78
+   },
+   {
+    "writer": "Bhatt Kal",
+    "count": 25
+   },
+   {
+    "writer": "Guru Nanak Dev Ji",
+    "count": 19
+   },
+   {
+    "writer": "Bhagat Kabeer Ji",
+    "count": 18
+   },
+   {
+    "writer": "Bhagat Ravi Daas Ji",
+    "count": 15
+   },
+   {
+    "writer": "Bhatt Mathuraa",
+    "count": 9
+   },
+   {
+    "writer": "Bhatt Gayandh",
+    "count": 8
+   },
+   {
+    "writer": "Bhatt Nal",
+    "count": 7
+   },
+   {
+    "writer": "Guru Raam Daas Ji",
+    "count": 6
+   },
+   {
+    "writer": "Guru Tegh Bahaadur Ji",
+    "count": 5
+   }
+  ]
+ }
+}
