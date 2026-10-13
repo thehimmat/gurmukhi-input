@@ -1,0 +1,35 @@
+{
+  "name": "@atthebunga/gurmukhi-legacy",
+  "version": "0.1.0",
+  "description": "Convert legacy Gurmukhi font text (AnmolLipi/GurbaniAkhar, Asees, Joy, AnandpurSahib, Satluj, SONY) to Unicode, and Unicode back to AnmolLipi",
+  "keywords": ["gurmukhi", "punjabi", "gurbani", "anmollipi", "gurbaniakhar", "asees", "legacy-font", "unicode", "converter"],
+  "author": "Himmat Singh Khalsa",
+  "license": "MIT",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thehimmat/gurmukhi-input.git",
+    "directory": "packages/legacy"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  }
+}

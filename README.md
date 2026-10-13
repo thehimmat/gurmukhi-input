@@ -8,6 +8,7 @@ Gurmukhi tooling for apps: real-time phonetic input (type roman keys, get Gurmuk
 | [`@atthebunga/gurmukhi-input`](packages/react) | React hook, `<GurmukhiInput>` and on-screen keyboard |
 | [`@atthebunga/gurmukhi-phonetics`](packages/phonetics) | Gurmukhi → IPA pronunciation and a fuzzy phonetic key for voice and romanized search |
 | [`@atthebunga/gurmukhi-search-utils`](packages/search-utils) | Spelling-variant folding, first-letter search, tokenizing and a `{category}` pattern language |
+| [`@atthebunga/gurmukhi-legacy`](packages/legacy) | Legacy-font text (AnmolLipi/GurbaniAkhar, Asees, Joy, …) ↔ Unicode |
 | [`@atthebunga/gurmukhi-element`](packages/element) | `<gurmukhi-input>`, `<gurmukhi-keyboard>` and `attachGurmukhi()` for any framework or plain HTML, plus a CDN build |
 
 ## Development
