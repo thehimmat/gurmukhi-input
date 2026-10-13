@@ -26,10 +26,13 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
-    }
+    },
+    "./fixtures/keystrokes.json": "./fixtures/keystrokes.json",
+    "./fixtures/keystrokes.schema.json": "./fixtures/keystrokes.schema.json"
   },
   "files": [
     "dist",
+    "fixtures",
     "README.md",
     "LICENSE"
   ],
