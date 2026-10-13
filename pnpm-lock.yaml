@@ -20,6 +20,16 @@ importers:
 
   packages/core: {}
 
+  packages/element:
+    dependencies:
+      '@atthebunga/gurmukhi-core':
+        specifier: workspace:^
+        version: link:../core
+    devDependencies:
+      jsdom:
+        specifier: ^26.1.0
+        version: 26.1.0
+
   packages/react:
     dependencies:
       '@atthebunga/gurmukhi-core':
