@@ -1,6 +1,6 @@
 {
   "name": "@atthebunga/gurmukhi-core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Framework-agnostic engine for real-time Gurmukhi input: layouts, keystroke resolution, and a pure editing controller",
   "keywords": [
     "gurmukhi",
