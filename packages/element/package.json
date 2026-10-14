@@ -1,6 +1,6 @@
 {
   "name": "@atthebunga/gurmukhi-element",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Gurmukhi phonetic input for any framework or plain HTML: <gurmukhi-input>, <gurmukhi-keyboard>, and attachGurmukhi()",
   "keywords": [
     "gurmukhi",

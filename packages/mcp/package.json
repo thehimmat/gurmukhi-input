@@ -1,6 +1,6 @@
 {
   "name": "@atthebunga/gurmukhi-mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MCP server for Gurmukhi and Gurbani: phonetic typing, IPA pronunciation, legacy-font conversion, Gurbani search and the word dictionary",
   "keywords": [
     "mcp",
