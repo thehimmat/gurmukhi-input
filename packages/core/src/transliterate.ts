@@ -25,6 +25,7 @@ export function resolveKey(
 // Convert a full roman string to Gurmukhi (no context — treats each char as
 // standalone). Useful for batch conversion or first-letter search mode.
 export function romanToGurmukhi(roman: string, layout: Layout): string {
+  if (layout.encoded) return layout.encoded.toUnicode(roman);
   return roman
     .split('')
     .map(ch => {

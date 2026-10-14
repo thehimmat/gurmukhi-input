@@ -7,7 +7,7 @@ import { useGurmukhiInput } from './useGurmukhiInput';
 interface GurmukhiInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   value: string;
   onChange: (v: string) => void;
-  // 'igurbani' (default) | 'gurmukhi-qwerty' | a custom Layout object
+  // 'phonetic' (default) | 'igurbani' | 'gurmukhi-qwerty' | a custom Layout object
   layout?: string | Layout;
   // Disable transliteration (plain input)
   transliterate?: boolean;
@@ -23,7 +23,7 @@ const GurmukhiInput = forwardRef<HTMLInputElement, GurmukhiInputProps>(
     {
       value,
       onChange,
-      layout = 'igurbani',
+      layout = 'phonetic',
       transliterate = true,
       patternMode = false,
       onKeyDown: externalKeyDown,

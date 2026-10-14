@@ -21,7 +21,11 @@ importers:
         specifier: ^3.2.6
         version: 3.2.7(@types/node@22.20.5)(jsdom@26.1.0)
 
-  packages/core: {}
+  packages/core:
+    dependencies:
+      '@atthebunga/gurmukhi-legacy':
+        specifier: workspace:^
+        version: link:../legacy
 
   packages/element:
     dependencies:

@@ -26,11 +26,11 @@ describe('resolveKeyboard', () => {
   });
 
   it('falls back to matras for context-sensitive layouts', () => {
-    expect(find(resolveKeyboard('igurbani', {}), 'KeyA').output).toBe('ਾ');
+    expect(find(resolveKeyboard('phonetic', {}), 'KeyA').output).toBe('ਾ');
   });
 
   it('leaves unmapped keys empty', () => {
-    expect(find(resolveKeyboard('igurbani', {}), 'Digit1').output).toBe('');
+    expect(find(resolveKeyboard('phonetic', {}), 'Digit1').output).toBe('');
   });
 
   it('throws on an unknown layout', () => {

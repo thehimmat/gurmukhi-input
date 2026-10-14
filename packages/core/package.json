@@ -1,7 +1,7 @@
 {
   "name": "@atthebunga/gurmukhi-core",
   "version": "0.1.0",
-  "description": "Framework-agnostic engine for real-time Gurmukhi phonetic input: layouts, keystroke resolution, and a pure editing controller",
+  "description": "Framework-agnostic engine for real-time Gurmukhi input: layouts, keystroke resolution, and a pure editing controller",
   "keywords": [
     "gurmukhi",
     "punjabi",
@@ -13,6 +13,9 @@
   "author": "Himmat Singh Khalsa",
   "license": "MIT",
   "sideEffects": false,
+  "dependencies": {
+    "@atthebunga/gurmukhi-legacy": "workspace:^"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thehimmat/gurmukhi-input.git",

@@ -14,7 +14,7 @@ function field(tag: 'input' | 'textarea' = 'input') {
 }
 
 describe('attachGurmukhi', () => {
-  it('defaults to the igurbani layout', () => {
+  it('defaults to the phonetic layout', () => {
     const input = field();
     attachGurmukhi(input);
     type(input, 'vahigurU');

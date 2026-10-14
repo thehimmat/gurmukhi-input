@@ -17,7 +17,7 @@ Use the `@atthebunga/gurmukhi-element` web component. It works in plain HTML (in
 <script type="module" src="https://cdn.jsdelivr.net/npm/@atthebunga/gurmukhi-element@0.1.0/dist/cdn.js"></script>
 ```
 
-- Typing roman keys produces Gurmukhi. With the default `igurbani` layout, `vahigurU` gives ਵਾਹਿਗੁਰੂ: vowels after a consonant become matras, and a capital letter gives the long vowel. Set `layout="gurmukhi-qwerty"` for the macOS Gurmukhi QWERTY keyboard.
+- Typing roman keys produces Gurmukhi. With the default `phonetic` layout, `vahigurU` gives ਵਾਹਿਗੁਰੂ: vowels after a consonant become matras, and a capital letter gives the long vowel. Set `layout="igurbani"` for the igurbani.com / GurbaniAkhar keyboard (`vwihgurU`, sihari before its consonant), or `layout="gurmukhi-qwerty"` for the macOS Gurmukhi QWERTY keyboard.
 - `<gurmukhi-input>` wraps a real `<input>`, so forms, `name` and `input` events work as usual. Label it by wrapping it in `<label>`; `<label for>` pointing at the element itself won't reach the input.
 - Read `.value` on the element, or listen for `input` events. For search boxes that use the pattern syntax `{ } _ * ( ) |`, add `pattern-mode`.
 - Theme the keyboard with CSS variables: `--gk-bg`, `--gk-key-bg`, `--gk-key-color`, `--gk-key-border`, `--gk-hint-color`, `--gk-key-active-bg`.

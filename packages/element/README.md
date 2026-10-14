@@ -42,7 +42,7 @@ It enhances a **real** `<input>` or `<textarea>` in the light DOM, either one yo
 
 | Attribute | |
 |---|---|
-| `layout` | `igurbani` (default) or `gurmukhi-qwerty` |
+| `layout` | `phonetic` (default), `igurbani` (igurbani.com / GurbaniAkhar keys) or `gurmukhi-qwerty` |
 | `pattern-mode` | Leave `{ } _ * ( ) \|` and text inside `{ }` unconverted, for search patterns |
 | `transliterate="off"` | Plain typing, without removing the element |
 | `value` | Initial value. The `.value` property reads and writes the field |
@@ -60,7 +60,7 @@ An on-screen keyboard. Clicking a key inserts its character at the caret of the 
 | Attribute | |
 |---|---|
 | `for` | id of the target field |
-| `layout` | `gurmukhi-qwerty` (default) or `igurbani`. The `.layout` property also accepts a custom `Layout` object |
+| `layout` | `gurmukhi-qwerty` (default), `phonetic` or `igurbani`. The `.layout` property also accepts a custom `Layout` object |
 | `shift`, `option` | Fix that modifier on |
 | `no-track` | Don't reflect physically held Shift/Option |
 | `hide-hints`, `hide-modifiers` | Hide the ASCII key hints / the Shift and Option buttons |
@@ -72,7 +72,7 @@ Theme it with CSS variables on the element: `--gk-bg`, `--gk-key-bg`, `--gk-key-
 Adds Gurmukhi typing to an existing field, with no custom element involved.
 
 ```ts
-const g = attachGurmukhi(document.querySelector('input')!, { layout: 'igurbani' });
+const g = attachGurmukhi(document.querySelector('input')!, { layout: 'phonetic' });
 g.update({ layout: 'gurmukhi-qwerty' });  // switch in place
 g.detach();                               // back to plain typing
 ```
@@ -103,7 +103,7 @@ Tell Vue it's a custom element: `compilerOptions.isCustomElement = tag => tag.st
 
 ## Behaviour
 
-The typing rules and both layouts are documented in the [React package README](../react/README.md#layout-igurbani-default). Every package runs the same [conformance fixtures](../core/fixtures), so they behave identically.
+The typing rules and all three layouts are documented in the [React package README](../react/README.md#layout-phonetic-default). Every package runs the same [conformance fixtures](../core/fixtures), so they behave identically.
 
 ## License
 

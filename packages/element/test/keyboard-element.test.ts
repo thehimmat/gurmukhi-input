@@ -33,7 +33,7 @@ describe('<gurmukhi-keyboard>', () => {
   });
 
   it('disables unmapped keys', () => {
-    const kb = mount('<gurmukhi-keyboard layout="igurbani"></gurmukhi-keyboard>');
+    const kb = mount('<gurmukhi-keyboard layout="phonetic"></gurmukhi-keyboard>');
     expect(key(kb, 'Digit1').disabled).toBe(true);
   });
 

@@ -1,13 +1,13 @@
 'use client';
 
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import type { EditState, Layout } from '@atthebunga/gurmukhi-core';
 import { applyKeydown, applyPaste, resolveLayout, stripDeadKeyArtifacts } from '@atthebunga/gurmukhi-core';
 
 interface UseGurmukhiInputOptions {
   value: string;
   onChange: (v: string) => void;
-  // 'igurbani' (default) | 'gurmukhi-qwerty' | a custom Layout object
+  // 'phonetic' (default) | 'igurbani' | 'gurmukhi-qwerty' | a custom Layout object
   layout?: string | Layout;
   // In pattern mode, curly-brace category names are left unconverted
   patternMode?: boolean;
@@ -37,12 +37,14 @@ function stateOf(el: Field, value: string): EditState {
 export function useGurmukhiInput({
   value,
   onChange,
-  layout: layoutProp = 'igurbani',
+  layout: layoutProp = 'phonetic',
   patternMode = false,
   enabled = true,
 }: UseGurmukhiInputOptions): GurmukhiInputHandlers {
 
   const layout = useMemo(() => resolveLayout(layoutProp), [layoutProp]);
+  // Raw keys of the word being typed, for encoded layouts (igurbani)
+  const composing = useRef<string | undefined>(undefined);
 
   // Commit a new value, then restore the caret once React has re-rendered
   const commit = useCallback(
@@ -60,10 +62,11 @@ export function useGurmukhiInput({
       if (!enabled) return;
 
       const el = e.currentTarget;
-      const next = applyKeydown(stateOf(el, value), e, layout, { patternMode });
+      const next = applyKeydown({ ...stateOf(el, value), composing: composing.current }, e, layout, { patternMode });
       if (!next) return;
 
       e.preventDefault();
+      composing.current = next.composing;
       commit(el, next);
 
       // macOS dead keys still insert their accent after preventDefault.
@@ -93,6 +96,7 @@ export function useGurmukhiInput({
       if (!next) return;
 
       e.preventDefault();
+      composing.current = undefined;
       commit(el, next);
     },
     [enabled, value, layout, commit],

@@ -19,12 +19,17 @@ describe('tool list', () => {
 describe('type_gurmukhi', () => {
   it('turns phonetic roman typing into Gurmukhi', async () => {
     const r = await call(await connect(), 'type_gurmukhi', { text: 'vahigurU' });
-    expect(r.structuredContent).toEqual({ gurmukhi: 'ਵਾਹਿਗੁਰੂ', layout: 'igurbani' });
+    expect(r.structuredContent).toEqual({ gurmukhi: 'ਵਾਹਿਗੁਰੂ', layout: 'phonetic' });
   });
 
   it('uses the chosen layout', async () => {
     const r = await call(await connect(), 'type_gurmukhi', { text: 't1', layout: 'gurmukhi-qwerty' });
     expect(r.structuredContent.gurmukhi).toBe('ਤ੧');
+  });
+
+  it('types igurbani.com (GurbaniAkhar) keys', async () => {
+    const r = await call(await connect(), 'type_gurmukhi', { text: '<> siq nwmu', layout: 'igurbani' });
+    expect(r.structuredContent.gurmukhi).toBe('ੴ ਸਤਿ ਨਾਮੁ');
   });
 
   it('leaves text that is already Gurmukhi alone', async () => {

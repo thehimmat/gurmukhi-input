@@ -5,7 +5,7 @@ import type { Layout } from '@atthebunga/gurmukhi-core';
 import { resolveKeyboard } from '@atthebunga/gurmukhi-core';
 
 interface GurmukhiKeyboardProps {
-  // 'igurbani' | 'gurmukhi-qwerty' | a custom Layout object. Default 'gurmukhi-qwerty'.
+  // 'phonetic' | 'igurbani' | 'gurmukhi-qwerty' | a custom Layout object. Default 'gurmukhi-qwerty'.
   layout?: string | Layout;
   // Controlled modifier state (optional). If provided, overrides internal state.
   shift?: boolean;
