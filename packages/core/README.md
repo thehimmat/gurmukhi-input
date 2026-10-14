@@ -13,7 +13,7 @@ The controller is a pair of pure functions. Each takes the field state (`value`,
 ```ts
 import { applyKeydown, applyPaste, resolveLayout } from '@atthebunga/gurmukhi-core';
 
-const layout = resolveLayout('igurbani'); // or 'gurmukhi-qwerty', or a custom Layout
+const layout = resolveLayout('phonetic'); // or 'igurbani', 'gurmukhi-qwerty', or a custom Layout
 
 input.addEventListener('keydown', e => {
   const next = applyKeydown(
@@ -34,7 +34,8 @@ On macOS, some Option-layer keys are dead keys. For those, `applyKeydown` sets `
 
 ## Also exported
 
-- `LAYOUTS`, `Layout`: the built-in `igurbani` and `gurmukhi-qwerty` layouts, and the type for defining your own.
+- `LAYOUTS`, `Layout`: the built-in `phonetic`, `igurbani` and `gurmukhi-qwerty` layouts, and the type for defining your own.
+- `igurbani` is an *encoded* layout (`Layout.encoded`): keys are GurbaniAkhar font ASCII, so a keydown returns a `compose` action that rewrites the word before the caret. Bindings must keep `EditResult.composing` and pass it back as `EditState.composing` on the next keydown.
 - `resolveKey`, `romanToGurmukhi`, `resolveKeydown`: lower-level lookups.
 - `resolveKeyboard`, `US_ANSI_ROWS`: data for drawing an on-screen keyboard.
 - `isGurmukhiChar`, `isGurmukhiConsonant`, `isCombiningGurmukhi`, `lastGurmukhiBase`: Unicode helpers.

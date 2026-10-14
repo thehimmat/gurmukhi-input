@@ -58,7 +58,7 @@ describe('<gurmukhi-input>', () => {
     const el = mount('<gurmukhi-input layout="gurmukhi-qwerty"></gurmukhi-input>');
     const input = el.querySelector('input')!;
     type(input, '1');
-    el.setAttribute('layout', 'igurbani');
+    el.setAttribute('layout', 'phonetic');
     type(input, 'a');
     expect(input.value).toBe('੧ਅ');
   });

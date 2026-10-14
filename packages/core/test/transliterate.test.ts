@@ -2,45 +2,45 @@ import { describe, expect, it } from 'vitest';
 import { LAYOUTS } from '../src/layouts';
 import { resolveKey, romanToGurmukhi } from '../src/transliterate';
 
-const igurbani = LAYOUTS.igurbani;
+const phonetic = LAYOUTS.phonetic;
 const qwerty = LAYOUTS['gurmukhi-qwerty'];
 
 // Type a roman string key by key, feeding each result back as context.
-function type(roman: string, layout = igurbani): string {
+function type(roman: string, layout = phonetic): string {
   let out = '';
   for (const ch of roman) out += resolveKey(ch, out, layout) ?? ch;
   return out;
 }
 
-describe('resolveKey (igurbani)', () => {
+describe('resolveKey (phonetic)', () => {
   it('maps consonants', () => {
-    expect(resolveKey('k', '', igurbani)).toBe('ਕ');
-    expect(resolveKey('q', '', igurbani)).toBe('ਤ');
-    expect(resolveKey('t', '', igurbani)).toBe('ਟ');
+    expect(resolveKey('k', '', phonetic)).toBe('ਕ');
+    expect(resolveKey('q', '', phonetic)).toBe('ਤ');
+    expect(resolveKey('t', '', phonetic)).toBe('ਟ');
   });
 
   it('gives standalone vowels at word start', () => {
-    expect(resolveKey('a', '', igurbani)).toBe('ਅ');
-    expect(resolveKey('i', ' ', igurbani)).toBe('ਇ');
+    expect(resolveKey('a', '', phonetic)).toBe('ਅ');
+    expect(resolveKey('i', ' ', phonetic)).toBe('ਇ');
   });
 
   it('gives matras after a consonant', () => {
-    expect(resolveKey('a', 'ਕ', igurbani)).toBe('ਾ');
-    expect(resolveKey('I', 'ਕ', igurbani)).toBe('ੀ');
+    expect(resolveKey('a', 'ਕ', phonetic)).toBe('ਾ');
+    expect(resolveKey('I', 'ਕ', phonetic)).toBe('ੀ');
   });
 
   it('looks past nukta and virama for matra context', () => {
-    expect(resolveKey('i', 'ਸ਼', igurbani)).toBe('ਿ');
-    expect(resolveKey('a', 'ਕ੍ਰ', igurbani)).toBe('ਾ');
+    expect(resolveKey('i', 'ਸ਼', phonetic)).toBe('ਿ');
+    expect(resolveKey('a', 'ਕ੍ਰ', phonetic)).toBe('ਾ');
   });
 
   it('gives standalone vowels after a vowel', () => {
-    expect(resolveKey('i', 'ਕਾ', igurbani)).toBe('ਇ');
+    expect(resolveKey('i', 'ਕਾ', phonetic)).toBe('ਇ');
   });
 
   it('returns null for unmapped keys', () => {
-    expect(resolveKey('1', '', igurbani)).toBeNull();
-    expect(resolveKey(' ', '', igurbani)).toBeNull();
+    expect(resolveKey('1', '', phonetic)).toBeNull();
+    expect(resolveKey(' ', '', phonetic)).toBeNull();
   });
 
   it('types whole words', () => {
@@ -68,10 +68,10 @@ describe('resolveKey (gurmukhi-qwerty)', () => {
 
 describe('romanToGurmukhi', () => {
   it('converts every character as standalone', () => {
-    expect(romanToGurmukhi('ka', igurbani)).toBe('ਕਅ');
+    expect(romanToGurmukhi('ka', phonetic)).toBe('ਕਅ');
   });
 
   it('leaves unmapped characters alone', () => {
-    expect(romanToGurmukhi('k 1', igurbani)).toBe('ਕ 1');
+    expect(romanToGurmukhi('k 1', phonetic)).toBe('ਕ 1');
   });
 });

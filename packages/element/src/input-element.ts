@@ -6,7 +6,7 @@ const FORWARDED = ['placeholder', 'name', 'disabled', 'required', 'readonly', 'a
 // Moved rather than copied, so assistive tech doesn't announce the name twice
 const MOVED = ['aria-label', 'aria-describedby'];
 
-// <gurmukhi-input layout="igurbani" pattern-mode transliterate="off">
+// <gurmukhi-input layout="phonetic" pattern-mode transliterate="off">
 //
 // Light DOM on purpose: it enhances a real <input> or <textarea> (yours, if
 // you put one inside, or one it creates), so labels, forms, validation, page
@@ -81,7 +81,7 @@ export class GurmukhiInputElement extends BaseElement {
 
   private options() {
     return {
-      layout: this.getAttribute('layout') ?? 'igurbani',
+      layout: this.getAttribute('layout') ?? 'phonetic',
       patternMode: this.hasAttribute('pattern-mode'),
       enabled: this.getAttribute('transliterate') !== 'off',
     };

@@ -11,6 +11,9 @@ export type EditState = {
   value: string;
   selectionStart: number;
   selectionEnd: number;
+  // Encoded layouts (igurbani): raw keys of the word being typed. Keep the
+  // composing from each result and pass it back with the next keydown.
+  composing?: string;
 };
 
 // endComposition: see KeydownAction — the binding must strip the dead-key
@@ -44,12 +47,26 @@ export function applyKeydown(
   layout: Layout,
   opts?: { patternMode?: boolean },
 ): EditResult | null {
-  const { value, selectionStart } = state;
+  const { value, selectionStart, selectionEnd } = state;
+  const collapsed = selectionStart === selectionEnd;
   const action = resolveKeydown(e, value.slice(0, selectionStart), layout, {
     patternMode: opts?.patternMode,
     valueHasOpenBrace: value.includes('{') && !value.includes('}'),
+    // Typing over a selection starts a fresh word
+    composing: collapsed ? state.composing : undefined,
   });
   if (action.type === 'passthrough') return null;
+
+  if (action.type === 'compose') {
+    const from = collapsed ? selectionStart - action.deleteBefore : selectionStart;
+    const caret = from + action.text.length;
+    return {
+      value: value.slice(0, from) + action.text + value.slice(selectionEnd),
+      selectionStart: caret,
+      selectionEnd: caret,
+      composing: action.composing,
+    };
+  }
 
   const next = splice(state, action.text);
   return action.endComposition ? { ...next, endComposition: true } : next;
@@ -60,6 +77,7 @@ export function applyKeydown(
 // character, using the text before the caret as vowel context.
 export function applyPaste(state: EditState, pasted: string, layout: Layout): EditState | null {
   if ([...pasted].some(ch => isGurmukhiChar(ch))) return null;
+  if (layout.encoded) return splice(state, layout.encoded.toUnicode(pasted));
 
   const textBefore = state.value.slice(0, state.selectionStart);
   let converted = '';

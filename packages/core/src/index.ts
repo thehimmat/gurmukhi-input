@@ -1,5 +1,5 @@
 // Layouts
-export type { Layout } from './layouts';
+export type { Layout, EncodedLayout } from './layouts';
 export { LAYOUTS } from './layouts';
 
 // Keystroke resolution

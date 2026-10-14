@@ -4,8 +4,10 @@ React hook and component for real-time Gurmukhi phonetic keyboard input. Convert
 
 ## Features
 
-- Two built-in layouts: `igurbani` (default) and `gurmukhi-qwerty` (matches macOS Gurmukhi - QWERTY keyboard)
-- Context-sensitive vowels in igurbani mode: `a` after a consonant produces the matra ਾ, not standalone ਅ
+- Three built-in layouts:
+  - `phonetic` (default): type what you hear, with context-sensitive vowels. `a` after a consonant gives the matra ਾ, not standalone ਅ.
+  - `igurbani`: types exactly like [igurbani.com](https://igurbani.com) and the GurbaniAkhar font keyboard.
+  - `gurmukhi-qwerty`: matches the macOS Gurmukhi - QWERTY keyboard.
 - Option-layer support for `gurmukhi-qwerty`: Option+T → ਟ, Option+N → ਞ, etc.
 - Optional on-screen keyboard viewer that reflects the active layout and previews Shift/Option layers
 - Pasted Gurmukhi unicode passes through; pasted ASCII is converted
@@ -45,8 +47,11 @@ import { GurmukhiInput } from '@atthebunga/gurmukhi-input';
 ### Choosing a layout
 
 ```tsx
-// Default — igurbani phonetic layout
+// Default — phonetic layout (vahigurU → ਵਾਹਿਗੁਰੂ)
 useGurmukhiInput({ value, onChange: setValue })
+
+// igurbani.com / GurbaniAkhar keys (vwihgurU → ਵਾਹਿਗੁਰੂ)
+useGurmukhiInput({ value, onChange: setValue, layout: 'igurbani' })
 
 // macOS Gurmukhi - QWERTY keyboard
 useGurmukhiInput({ value, onChange: setValue, layout: 'gurmukhi-qwerty' })
@@ -62,7 +67,7 @@ useGurmukhiInput({ value, onChange: setValue, layout: myLayout })
 ```ts
 import { LAYOUTS } from '@atthebunga/gurmukhi-input';
 
-console.log(LAYOUTS['igurbani'].keys);       // all consonant/mark mappings
+console.log(LAYOUTS['phonetic'].keys);       // all consonant/mark mappings
 console.log(LAYOUTS['gurmukhi-qwerty'].option); // Option-layer mappings
 ```
 
@@ -88,7 +93,7 @@ Props:
 
 | Prop | Default | Description |
 |------|---------|-------------|
-| `layout` | `'gurmukhi-qwerty'` | `'igurbani'`, `'gurmukhi-qwerty'`, or a custom `Layout` |
+| `layout` | `'gurmukhi-qwerty'` | `'phonetic'`, `'igurbani'`, `'gurmukhi-qwerty'`, or a custom `Layout` |
 | `shift` / `option` | — | Controlled modifier state (omit to let the component manage it) |
 | `trackPhysicalModifiers` | `true` | Reflect physically held Shift/Alt keys |
 | `showModifierToggles` | `true` | Render on-screen Shift / Option toggle buttons |
@@ -127,9 +132,13 @@ const rows = resolveKeyboard('gurmukhi-qwerty', { shift: false, option: true });
 
 ---
 
-## Layout: `igurbani` (default)
+## Upgrading from 1.x
 
-Based on the [igurbani.com](https://igurbani.com) phonetic layout — the standard for Gurbani software.
+In 1.x the phonetic layout was called `igurbani`. It is now `phonetic`, and it is still the default, so code that doesn't pass a layout is unaffected. `igurbani` now means the igurbani.com keyboard. If you passed `layout: 'igurbani'` and want the old behaviour, pass `layout: 'phonetic'`.
+
+## Layout: `phonetic` (default)
+
+Type what you hear, in logical order: `vahigurU` gives ਵਾਹਿਗੁਰੂ. (Called `igurbani` before 2.0.)
 
 Vowel keys are **context-sensitive**: after a Gurmukhi consonant they produce a matra (combining vowel sign); otherwise a standalone vowel letter.
 
@@ -169,6 +178,37 @@ Vowel keys are **context-sensitive**: after a Gurmukhi consonant they produce a 
 | `O` | ਔ | ੌ |
 
 ---
+
+## Layout: `igurbani`
+
+Types exactly like the search box on [igurbani.com](https://igurbani.com), which uses the GurbaniAkhar font keyboard (shared by AnmolLipi, GurbaniLipi and others). Keys are typed in the order the letters appear on the page:
+
+- **Sihari before its consonant:** `ikrpw` gives ਕਿਰਪਾ, and `vwihgurU` gives ਵਾਹਿਗੁਰੂ. A sihari shows on its own until the next consonant arrives.
+- **Vowels from carriers:** `a` is ੳ, `A` is ਅ and `e` is ੲ. Add a sign to build the vowel: `au` gives ਉ, `Aw` gives ਆ, `eI` gives ਈ. This works after a consonant too: `hoveI` gives ਹੋਵਈ. `u` on its own is a bare aunkar ◌ੁ.
+- **Symbols:** `<` then `>` gives ੴ, `[` gives ।, `]` gives ॥, and the number row types ੧੨੩.
+
+Each key re-converts the word being typed, so the hook and the web component keep the word's raw keys between keystrokes (`composing` in the core engine).
+
+| Key | ਗੁਰਮੁਖੀ | Key | ਗੁਰਮੁਖੀ | Key | ਗੁਰਮੁਖੀ | Key | ਗੁਰਮੁਖੀ |
+|-----|---------|-----|---------|-----|---------|-----|---------|
+| `0` | ੦ | `1` | ੧ | `2` | ੨ | `3` | ੩ |
+| `4` | ੪ | `5` | ੫ | `6` | ੬ | `7` | ੭ |
+| `8` | ੮ | `9` | ੯ | `` ` `` | ◌ੱ | `~` | ◌ੱ |
+| `@` | ◌ੑ | `^` | ਖ਼ | `&` | ਫ਼ | `q` | ਤ |
+| `Q` | ਥ | `w` | ◌ਾ | `W` | ਾਂ | `e` | ੲ |
+| `E` | ਓ | `r` | ਰ | `R` | ੍ਰ | `t` | ਟ |
+| `T` | ਠ | `y` | ◌ੇ | `Y` | ◌ੈ | `u` | ◌ੁ |
+| `U` | ◌ੂ | `i` | ◌ਿ | `I` | ◌ੀ | `o` | ◌ੋ |
+| `O` | ◌ੌ | `p` | ਪ | `P` | ਫ | `[` | । |
+| `]` | ॥ | `\` | ਞ | `\|` | ਙ | `a` | ੳ |
+| `A` | ਅ | `s` | ਸ | `S` | ਸ਼ | `d` | ਦ |
+| `D` | ਧ | `f` | ਡ | `F` | ਢ | `g` | ਗ |
+| `G` | ਘ | `h` | ਹ | `H` | ੍ਹ | `j` | ਜ |
+| `J` | ਝ | `k` | ਕ | `K` | ਖ | `l` | ਲ |
+| `L` | ਲ਼ | `z` | ਜ਼ | `Z` | ਗ਼ | `x` | ਣ |
+| `X` | ਯ | `c` | ਚ | `C` | ਛ | `v` | ਵ |
+| `V` | ੜ | `b` | ਬ | `B` | ਭ | `n` | ਨ |
+| `N` | ◌ਂ | `m` | ਮ | `M` | ◌ੰ |  |  |
 
 ## Layout: `gurmukhi-qwerty`
 

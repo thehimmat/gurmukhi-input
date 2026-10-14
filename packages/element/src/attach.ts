@@ -4,7 +4,7 @@ import { applyKeydown, applyPaste, resolveLayout, stripDeadKeyArtifacts } from '
 export type GurmukhiField = HTMLInputElement | HTMLTextAreaElement;
 
 export type AttachOptions = {
-  // 'igurbani' (default) | 'gurmukhi-qwerty' | a custom Layout object
+  // 'phonetic' (default) | 'igurbani' | 'gurmukhi-qwerty' | a custom Layout object
   layout?: string | Layout;
   // Leave { } _ * ( ) | and text inside { } unconverted
   patternMode?: boolean;
@@ -40,16 +40,19 @@ export function writeField(field: GurmukhiField, next: EditState) {
 // Make an existing <input> or <textarea> type Gurmukhi. Works with any
 // framework, or none: it only listens for keydown and paste on the field.
 export function attachGurmukhi(field: GurmukhiField, options: AttachOptions = {}): GurmukhiAttachment {
-  let layout = resolveLayout(options.layout ?? 'igurbani');
+  let layout = resolveLayout(options.layout ?? 'phonetic');
   let patternMode = options.patternMode ?? false;
   let enabled = options.enabled ?? true;
+  // Raw keys of the word being typed, for encoded layouts (igurbani)
+  let composing: string | undefined;
 
   function onKeyDown(e: KeyboardEvent) {
     if (!enabled) return;
-    const next = applyKeydown(stateOf(field), e, layout, { patternMode });
+    const next = applyKeydown({ ...stateOf(field), composing }, e, layout, { patternMode });
     if (!next) return;
 
     e.preventDefault();
+    composing = next.composing;
     writeField(field, next);
 
     // macOS dead keys still insert their accent after preventDefault.
@@ -74,6 +77,7 @@ export function attachGurmukhi(field: GurmukhiField, options: AttachOptions = {}
     if (!next) return;
 
     e.preventDefault();
+    composing = undefined;
     writeField(field, next);
   }
 
@@ -84,7 +88,10 @@ export function attachGurmukhi(field: GurmukhiField, options: AttachOptions = {}
 
   return {
     update(next) {
-      if (next.layout !== undefined) layout = resolveLayout(next.layout);
+      if (next.layout !== undefined) {
+        layout = resolveLayout(next.layout);
+        composing = undefined;
+      }
       if (next.patternMode !== undefined) patternMode = next.patternMode;
       if (next.enabled !== undefined) enabled = next.enabled;
     },

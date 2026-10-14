@@ -15,7 +15,7 @@
       "additionalProperties": false,
       "properties": {
         "name": { "type": "string" },
-        "layout": { "enum": ["igurbani", "gurmukhi-qwerty"] },
+        "layout": { "enum": ["phonetic", "igurbani", "gurmukhi-qwerty"] },
         "patternMode": { "type": "boolean" },
         "start": { "$ref": "#/$defs/state" },
         "steps": { "type": "array", "items": { "$ref": "#/$defs/step" }, "minItems": 1 },
