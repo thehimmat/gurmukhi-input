@@ -1,6 +1,6 @@
 {
   "name": "@atthebunga/gurmukhi-phonetics",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Gurmukhi to IPA pronunciation, and a fuzzy phonetic key for matching spoken or romanized queries",
   "keywords": [
     "gurmukhi",

@@ -1,6 +1,6 @@
 {
   "name": "@atthebunga/gurmukhi-input",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "React hook, component, and on-screen keyboard for real-time Gurmukhi phonetic input",
   "keywords": [
     "gurmukhi",
