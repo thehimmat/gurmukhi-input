@@ -7,7 +7,9 @@ import { gurmukhiQwerty } from './gurmukhi-qwerty';
 // `keys` is looked up by e.key (the character the key produces). Layouts with
 // context-sensitive vowels (phonetic) also set `vowelStandalone` / `vowelMatra`:
 // a vowel key produces the matra after a consonant, the standalone letter
-// otherwise. `option` / `optionShift` are looked up by e.code, since macOS
+// otherwise. `inherentKey` (phonetic: 'a') after a consonant is the inherent
+// vowel: it writes nothing, and the next vowel is standalone (nirBau → ਨਿਰਭਉ).
+// `option` / `optionShift` are looked up by e.code, since macOS
 // turns Option+key into dead keys or symbols that don't identify the key.
 //
 // An `encoded` layout (igurbani) is a legacy-font keyboard: keys are the
@@ -20,6 +22,7 @@ export type Layout = {
   keys: Record<string, string>;
   vowelStandalone?: Record<string, string>;
   vowelMatra?: Record<string, string>;
+  inherentKey?: string;
   option?: Record<string, string>;
   optionShift?: Record<string, string>;
   encoded?: EncodedLayout;

@@ -2,7 +2,7 @@ import type { Layout } from './index';
 
 export const phonetic: Layout = {
   name: 'phonetic',
-  description: 'Phonetic roman layout: type what you hear, in logical order (vahigurU → ਵਾਹਿਗੁਰੂ). Vowels are context-sensitive',
+  description: 'Phonetic roman layout: type what you hear, in logical order (vAhigurU → ਵਾਹਿਗੁਰੂ). Vowels are context-sensitive; a after a consonant is the inherent vowel',
   keys: {
     // Gutturals / sibilants
     's': 'ਸ',
@@ -60,15 +60,16 @@ export const phonetic: Layout = {
     'A': 'ਆ',
     'i': 'ਇ',
     'I': 'ਈ',
-    'u': 'ੳ', // oora carrier
+    'u': 'ਉ',
     'U': 'ਊ',
     'e': 'ਏ',
     'E': 'ਐ',
     'o': 'ਓ',
     'O': 'ਔ',
   },
+  // 'a' after a consonant is its inherent vowel; 'A' is the kanna ਾ
+  inherentKey: 'a',
   vowelMatra: {
-    'a': 'ਾ',
     'A': 'ਾ',
     'i': 'ਿ',
     'I': 'ੀ',

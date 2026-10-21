@@ -18,6 +18,10 @@ const VOWEL_DIACRITICS = new Set(['ਾ', 'ਿ', 'ੀ', 'ੁ', 'ੂ', 'ੇ', 'ੈ
 const NASALS = new Set(['ਂ', 'ੰ']);
 const ADDAK = 'ੱ'; // gemination mark
 const VIRAMA = '੍'; // halant / virama
+const NUKTA = '਼';
+const YAKASH = 'ੵ'; // a subjoined ਯ written as a mark
+// Persian sounds of the nukta letters (ਸ਼ ਖ਼ ਗ਼ ਜ਼ ਫ਼ ਲ਼)
+const NUKTA_IPA: Record<string, string> = { 'ਸ': 'ʃ', 'ਖ': 'x', 'ਗ': 'ɣ', 'ਜ': 'z', 'ਫ': 'f', 'ਲ': 'ɭ' };
 const INHERENT_VOWEL = 'ə';
 // Independent vowel letters are a syllable nucleus on their own, so they never
 // take the inherent schwa a bare consonant does. ਅ's own value is also "ə",
@@ -30,24 +34,45 @@ export type ConvertOptions = {
   // Give independent vowels an inherent schwa too. Wrong, but it's what the
   // stored voice-search keys were built with, so phoneticKey keeps it.
   independentVowelSchwa: boolean;
+  // Read nukta and yakash the old way: a nukta is ignored (or, after a
+  // precomposed letter, the letter is lost) and yakash is dropped. It's what
+  // the stored voice-search keys were built with, so phoneticKey keeps it.
+  legacyMarks: boolean;
 };
 
-function ipaOf(char: string): string {
-  return rules.primitives[char] ?? '';
+// A unit is one character, or a consonant with its nukta (ਜ਼ = ਜ + ਼)
+function ipaOf(unit: string): string {
+  if (unit.length === 2 && unit[1] === NUKTA) return NUKTA_IPA[unit[0]] ?? ipaOf(unit[0]);
+  return rules.primitives[unit] ?? '';
+}
+
+// Split a word into units, with its marks in one canonical shape first. NFC
+// splits precomposed nukta letters (U+0A36 → ਸ + ਼) and puts a nukta before
+// a virama; yakash is spelled as virama + ਯ.
+function toUnits(word: string): string[] {
+  const units: string[] = [];
+  for (const ch of word.normalize('NFC').replace(/ੵ/g, VIRAMA + 'ਯ')) {
+    const prev = units[units.length - 1];
+    if (ch !== NUKTA) units.push(ch);
+    else if (prev && prev in rules.placeOfArticulation) units[units.length - 1] = prev + ch;
+    // a nukta on anything but a consonant has no sound
+  }
+  return units;
 }
 
 // Tippi / bindi take the place of articulation of the consonant after them
 function resolveNasal(nextConsonant: string | null): string {
   if (!nextConsonant) return 'n̪';
-  const place = rules.placeOfArticulation[nextConsonant] ?? 'dental';
+  const place = rules.placeOfArticulation[nextConsonant[0]] ?? 'dental';
   return rules.nasalResolution[place] ?? 'n̪';
 }
 
 // Convert one Gurmukhi word to IPA. Handles consonant + vowel sign, the
-// inherent vowel, nasal assimilation, gemination (addak) and virama clusters.
+// inherent vowel, nasal assimilation, gemination (addak), virama clusters,
+// nukta letters and yakash.
 // Does not model tone.
 export function convertWord(word: string, opts: ConvertOptions): string {
-  const chars = [...word];
+  const chars = opts.legacyMarks ? [...word] : toUnits(word);
   let result = '';
   // result.length right after an inherent schwa was appended; if nothing
   // follows it, that schwa is the word-final one

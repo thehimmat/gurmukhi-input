@@ -34,7 +34,7 @@ describe('search_gurbani', () => {
     const f = fakeFetch({ '/api/search': { body: { lines: [], total: 0, page: 0, pageSize: 20 } } });
     await call(await connect(f.fetch), 'search_gurbani', { query: 'nwmu', typed: 'anmollipi' });
     expect(f.calls[0].searchParams.get('q')).toBe('ਨਾਮੁ');
-    await call(await connect(f.fetch), 'search_gurbani', { query: 'namu', typed: 'phonetic' });
+    await call(await connect(f.fetch), 'search_gurbani', { query: 'nAmu', typed: 'phonetic' });
     expect(f.calls[1].searchParams.get('q')).toBe('ਨਾਮੁ');
   });
 

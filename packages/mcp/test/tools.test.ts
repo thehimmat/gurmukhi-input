@@ -18,7 +18,7 @@ describe('tool list', () => {
 
 describe('type_gurmukhi', () => {
   it('turns phonetic roman typing into Gurmukhi', async () => {
-    const r = await call(await connect(), 'type_gurmukhi', { text: 'vahigurU' });
+    const r = await call(await connect(), 'type_gurmukhi', { text: 'vAhigurU' });
     expect(r.structuredContent).toEqual({ gurmukhi: 'ਵਾਹਿਗੁਰੂ', layout: 'phonetic' });
   });
 

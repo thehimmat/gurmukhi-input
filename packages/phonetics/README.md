@@ -27,7 +27,7 @@ Faithful IPA for display. It handles the inherent vowel, vowel signs, independen
 
 A deliberately lossy key. It removes the distinctions a listener can't reliably hear: vowel length, retroflex vs dental, and which nasal. Store the key next to each word, then compare it with the key of a query.
 
-The key is **stable**. It is identical to the keys `gurmukhi-voice-search` stores in `words.phonetic_ipa`, including one known quirk: independent vowels get an inherent schwa (`ਅਉ` → `aaua`). Fixing that would change about 25% of the stored keys, so it will come as a major version bump with a re-index.
+The key is **stable**. It is identical to the keys `gurmukhi-voice-search` stores in `words.phonetic_ipa`, including two known quirks: independent vowels get an inherent schwa (`ਅਉ` → `aaua`), and nukta letters and yakash keep their old reading (ਜ਼ keys like ਜ, yakash is dropped), which `toIPA` now gets right. Fixing either would change stored keys, so it will come as a major version bump with a re-index.
 
 ## `romanPhoneticKey(text)`
 
