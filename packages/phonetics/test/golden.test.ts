@@ -8,6 +8,8 @@ import { phoneticKey, toIPA } from '../src';
 //   toIPA        ← gurmukhi-kosh       lib/pronounce/gurmukhi-to-ipa.ts
 //   phoneticKey  ← gurmukhi-voice-search lib/gurmukhi-to-ipa.ts (normalizeIPA ∘ gurmukhiWordToIPA)
 // phoneticKey must match exactly: voice-search stores it in words.phonetic_ipa.
+// toIPA departs from kosh on purpose for nukta letters and yakash, which kosh
+// misread (ਜ਼ as ਜ plus a stray schwa, yakash dropped).
 
 const rows = golden.rows as [string, string, string, string][];
 

@@ -31,6 +31,25 @@ describe('toIPA', () => {
     expect(toIPA('ਪ੍ਰੇਮ')).toBe('pɾeːm');
   });
 
+  it('reads a nukta as part of its consonant', () => {
+    expect(toIPA('ਸ\u0A3Cਬਦ')).toBe('ʃəbəd̪');
+    expect(toIPA('ਖ\u0A3Cਸਮ')).toBe('xəsəm');
+    expect(toIPA('ਜ\u0A3Cਰ')).toBe('zəɾ');
+  });
+
+  it('reads precomposed nukta letters the same as base + nukta', () => {
+    expect(toIPA('\u0A36ਬਦ')).toBe(toIPA('ਸ\u0A3Cਬਦ'));
+  });
+
+  it('keeps a nukta consonant before virama in its cluster', () => {
+    expect(toIPA('ਇਸ\u0A3C੍ਟ')).toBe('ɪʃʈ');
+  });
+
+  it('reads yakash as a subjoined ਯ', () => {
+    expect(toIPA('ਬਿਗੵਾਪ੍ਤਿ')).toBe(toIPA('ਬਿਗ੍ਯਾਪ੍ਤਿ'));
+    expect(toIPA('ਬਿਗੵਾਪ੍ਤਿ')).toBe('bɪgjaːpt̪ɪ');
+  });
+
   it('converts each word of a line, keeping the spaces', () => {
     expect(toIPA('ਸਤਿ ਨਾਮੁ')).toBe(`${toIPA('ਸਤਿ')} ${toIPA('ਨਾਮੁ')}`);
   });
@@ -49,6 +68,14 @@ describe('phoneticKey', () => {
   it('gives the same key to retroflex and dental pairs', () => {
     expect(phoneticKey('ਟ')).toBe(phoneticKey('ਤ'));
     expect(phoneticKey('ਨ')).toBe(phoneticKey('ਣ'));
+  });
+
+  // voice-search stores these keys, so nukta and yakash keep their old
+  // (wrong) reading here until a re-index
+  it('keeps its stored reading of nukta and yakash', () => {
+    expect(phoneticKey('ਇਸ\u0A3C੍ਟ')).toBe('iasata');
+    expect(phoneticKey('ਸ\u0A3Cਬਦ')).toBe('sabada');
+    expect(phoneticKey('ਬਿਗੵਾਪ੍ਤਿ')).toBe('bigaapti');
   });
 
   it('keys each word of a line, keeping the spaces', () => {
