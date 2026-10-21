@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { LAYOUTS } from '../src/layouts';
-import { resolveKey, romanToGurmukhi } from '../src/transliterate';
+import { resolveKey, resolveKeyEdit, romanToGurmukhi } from '../src/transliterate';
 
 const phonetic = LAYOUTS.phonetic;
 const qwerty = LAYOUTS['gurmukhi-qwerty'];
@@ -64,6 +64,26 @@ describe('resolveKey (phonetic)', () => {
     expect(type('sqinAmu')).toBe('ਸਤਿਨਾਮੁ');
     expect(type('nirBau')).toBe('ਨਿਰਭਉ');
     expect(type('BAu')).toBe('ਭਾਉ');
+  });
+});
+
+describe('resolveKeyEdit (phonetic)', () => {
+  it('writes a matra before trailing tippi, bindi and addak', () => {
+    expect(resolveKeyEdit('i', 'ਕੰ', phonetic)).toEqual({ deleteBefore: 1, text: 'ਿੰ' });
+    expect(resolveKeyEdit('I', 'ਕਂ', phonetic)).toEqual({ deleteBefore: 1, text: 'ੀਂ' });
+    expect(resolveKeyEdit('i', 'ਕੱ', phonetic)).toEqual({ deleteBefore: 1, text: 'ਿੱ' });
+  });
+
+  it('drops a virama before a vowel', () => {
+    expect(resolveKeyEdit('A', 'ਕ੍', phonetic)).toEqual({ deleteBefore: 1, text: 'ਾ' });
+    expect(resolveKeyEdit('a', 'ਕ੍', phonetic)).toEqual({ deleteBefore: 1, text: '', inherent: true });
+  });
+
+  it('inserts other keys with nothing to delete', () => {
+    expect(resolveKeyEdit('i', 'ਕ', phonetic)).toEqual({ deleteBefore: 0, text: 'ਿ' });
+    expect(resolveKeyEdit('i', 'ਕਾਂ', phonetic)).toEqual({ deleteBefore: 0, text: 'ਇ' });
+    expect(resolveKeyEdit('k', 'ਕੰ', phonetic)).toEqual({ deleteBefore: 0, text: 'ਕ' });
+    expect(resolveKeyEdit('1', '', phonetic)).toBeNull();
   });
 });
 

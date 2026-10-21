@@ -3,7 +3,8 @@ export type { Layout, EncodedLayout } from './layouts';
 export { LAYOUTS } from './layouts';
 
 // Keystroke resolution
-export { resolveKey, romanToGurmukhi } from './transliterate';
+export { resolveKey, resolveKeyEdit, romanToGurmukhi } from './transliterate';
+export type { KeyEdit } from './transliterate';
 export { resolveKeydown, stripDeadKeyArtifacts } from './dispatch';
 export type { KeyEventLike, KeydownAction } from './dispatch';
 

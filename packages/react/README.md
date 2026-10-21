@@ -144,6 +144,8 @@ Vowel keys are **context-sensitive**: after a Gurmukhi consonant they produce a 
 
 `a` after a consonant is the **inherent vowel**: it writes nothing, and the vowel typed next is standalone. So `nirBau` gives ਨਿਰਭਉ and `gauRI` gives ਗਉੜੀ, while `BAu` gives ਭਾਉ. Type `A` for the kanna ਾ.
 
+A vowel sign always goes **before** tippi, bindi and addak: `k^i` gives ਕਿੰ, `kMI` gives ਕੀਂ and `kWi` gives ਕਿੱ. A virama (`~`) right before a vowel is dropped, since a vowel can't follow one: `k~A` gives ਕਾ.
+
 ### Consonants & marks
 
 | Key | ਗੁਰਮੁਖੀ | Key | ਗੁਰਮੁਖੀ | Key | ਗੁਰਮੁਖੀ |

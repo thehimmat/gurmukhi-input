@@ -3,7 +3,7 @@ import { LAYOUTS } from './layouts';
 import type { KeyEventLike } from './dispatch';
 import { resolveKeydown } from './dispatch';
 import { isGurmukhiChar } from './keymap';
-import { resolveKey } from './transliterate';
+import { resolveKeyEdit, type KeyEdit } from './transliterate';
 
 // The text-field state the controller works on. Mirrors an <input>'s
 // value / selectionStart / selectionEnd, so any binding can read and write it.
@@ -30,9 +30,11 @@ export function resolveLayout(layout: string | Layout): Layout {
   return layout;
 }
 
-// Replace the selection with text and put the caret after it.
-function splice(state: EditState, text: string): EditState {
-  const { value, selectionStart: start, selectionEnd: end } = state;
+// Replace the selection, and deleteBefore characters before it, with text
+// and put the caret after it.
+function splice(state: EditState, text: string, deleteBefore = 0): EditState {
+  const { value, selectionStart, selectionEnd: end } = state;
+  const start = selectionStart - deleteBefore;
   return {
     value: value.slice(0, start) + text + value.slice(end),
     selectionStart: start + text.length,
@@ -69,7 +71,7 @@ export function applyKeydown(
     };
   }
 
-  const next: EditResult = splice(state, action.text);
+  const next: EditResult = splice(state, action.text, action.deleteBefore);
   if (action.composing) next.composing = action.composing;
   return action.endComposition ? { ...next, endComposition: true } : next;
 }
@@ -81,13 +83,22 @@ export function applyPaste(state: EditState, pasted: string, layout: Layout): Ed
   if ([...pasted].some(ch => isGurmukhiChar(ch))) return null;
   if (layout.encoded) return splice(state, layout.encoded.toUnicode(pasted));
 
+  // Edits can reach back before the paste (ਕੰ + i → ਕਿੰ), so build the whole
+  // text before the caret
   const textBefore = state.value.slice(0, state.selectionStart);
-  let converted = '';
+  let typed = textBefore;
   let afterInherent = false;
   for (const ch of pasted) {
-    const g = resolveKey(ch, textBefore + converted, layout, afterInherent);
-    afterInherent = g === '';
-    converted += g ?? ch;
+    const edit: KeyEdit = resolveKeyEdit(ch, typed, layout, afterInherent) ?? { deleteBefore: 0, text: ch };
+    afterInherent = !!edit.inherent;
+    typed = typed.slice(0, typed.length - edit.deleteBefore) + edit.text;
   }
-  return splice(state, converted);
+  const common = commonPrefixLength(textBefore, typed);
+  return splice(state, typed.slice(common), textBefore.length - common);
+}
+
+function commonPrefixLength(a: string, b: string): number {
+  let i = 0;
+  while (i < a.length && i < b.length && a[i] === b[i]) i++;
+  return i;
 }

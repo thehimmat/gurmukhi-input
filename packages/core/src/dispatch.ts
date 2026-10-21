@@ -1,6 +1,6 @@
 import type { Layout } from './layouts';
 import { isGurmukhiChar } from './keymap';
-import { resolveKey } from './transliterate';
+import { resolveKeyEdit } from './transliterate';
 
 // The subset of a KeyboardEvent the dispatcher needs. Kept structural so it
 // works with React synthetic events, DOM events, and plain test objects.
@@ -16,9 +16,10 @@ export type KeyEventLike = {
 export type KeydownAction =
   // endComposition: the key was a macOS dead key (Option+e, Option+u, …) and
   // the browser will still insert its accent mark — the caller must clean up.
-  // composing: the key was the inherent vowel (text is ''); pass it back as
-  // opts.composing on the next keydown.
-  | { type: 'insert'; text: string; endComposition?: boolean; composing?: string }
+  // deleteBefore: remove that many characters before the caret first (a vowel
+  // sign moving before ੰ ੱ ਂ, or a dropped virama). composing: the key was the
+  // inherent vowel; pass it back as opts.composing on the next keydown.
+  | { type: 'insert'; text: string; deleteBefore?: number; endComposition?: boolean; composing?: string }
   // Encoded layouts: replace the deleteBefore characters before the caret
   // with text. composing is the raw keys of the word so far; pass it back as
   // opts.composing on the next keydown.
@@ -79,10 +80,12 @@ export function resolveKeydown(
   }
 
   const afterInherent = !!layout.inherentKey && opts?.composing === layout.inherentKey;
-  const text = resolveKey(e.key, textBefore, layout, afterInherent);
-  if (text === '') return { type: 'insert', text, composing: e.key };
-  if (text) return { type: 'insert', text };
-  return { type: 'passthrough' };
+  const edit = resolveKeyEdit(e.key, textBefore, layout, afterInherent);
+  if (!edit) return { type: 'passthrough' };
+  const action: KeydownAction = { type: 'insert', text: edit.text };
+  if (edit.deleteBefore) action.deleteBefore = edit.deleteBefore;
+  if (edit.inherent) action.composing = e.key;
+  return action;
 }
 
 // The word being typed, as keys: the caller's buffer if the text still ends
