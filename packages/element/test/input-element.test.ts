@@ -43,7 +43,7 @@ describe('<gurmukhi-input>', () => {
 
   it('converts typing and exposes value', () => {
     const el = mount('<gurmukhi-input></gurmukhi-input>');
-    type(el.querySelector('input')!, 'vahigurU');
+    type(el.querySelector('input')!, 'vAhigurU');
     expect(el.value).toBe('ਵਾਹਿਗੁਰੂ');
   });
 

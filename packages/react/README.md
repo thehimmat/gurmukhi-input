@@ -5,7 +5,7 @@ React hook and component for real-time Gurmukhi phonetic keyboard input. Convert
 ## Features
 
 - Three built-in layouts:
-  - `phonetic` (default): type what you hear, with context-sensitive vowels. `a` after a consonant gives the matra ਾ, not standalone ਅ.
+  - `phonetic` (default): type what you hear, with context-sensitive vowels. `a` after a consonant is the inherent vowel and `A` gives the matra ਾ (`nirBau` → ਨਿਰਭਉ).
   - `igurbani`: types exactly like [igurbani.com](https://igurbani.com) and the GurbaniAkhar font keyboard.
   - `gurmukhi-qwerty`: matches the macOS Gurmukhi - QWERTY keyboard.
 - Option-layer support for `gurmukhi-qwerty`: Option+T → ਟ, Option+N → ਞ, etc.
@@ -47,7 +47,7 @@ import { GurmukhiInput } from '@atthebunga/gurmukhi-input';
 ### Choosing a layout
 
 ```tsx
-// Default — phonetic layout (vahigurU → ਵਾਹਿਗੁਰੂ)
+// Default — phonetic layout (vAhigurU → ਵਾਹਿਗੁਰੂ)
 useGurmukhiInput({ value, onChange: setValue })
 
 // igurbani.com / GurbaniAkhar keys (vwihgurU → ਵਾਹਿਗੁਰੂ)
@@ -138,9 +138,11 @@ In 1.x the phonetic layout was called `igurbani`. It is now `phonetic`, and it i
 
 ## Layout: `phonetic` (default)
 
-Type what you hear, in logical order: `vahigurU` gives ਵਾਹਿਗੁਰੂ. (Called `igurbani` before 2.0.)
+Type what you hear, in logical order: `vAhigurU` gives ਵਾਹਿਗੁਰੂ. (Called `igurbani` before 2.0.)
 
 Vowel keys are **context-sensitive**: after a Gurmukhi consonant they produce a matra (combining vowel sign); otherwise a standalone vowel letter.
+
+`a` after a consonant is the **inherent vowel**: it writes nothing, and the vowel typed next is standalone. So `nirBau` gives ਨਿਰਭਉ and `gauRI` gives ਗਉੜੀ, while `BAu` gives ਭਾਉ. Type `A` for the kanna ਾ.
 
 ### Consonants & marks
 
@@ -166,11 +168,11 @@ Vowel keys are **context-sensitive**: after a Gurmukhi consonant they produce a 
 
 | Key | Standalone | After consonant |
 |-----|-----------|-----------------|
-| `a` | ਅ | ਾ |
+| `a` | ਅ | (inherent vowel) |
 | `A` | ਆ | ਾ |
 | `i` | ਇ | ਿ |
 | `I` | ਈ | ੀ |
-| `u` | ੳ | ੁ |
+| `u` | ਉ | ੁ |
 | `U` | ਊ | ੂ |
 | `e` | ਏ | ੇ |
 | `E` | ਐ | ੈ |

@@ -1,0 +1,8 @@
+---
+"@atthebunga/gurmukhi-core": minor
+"@atthebunga/gurmukhi-input": major
+"@atthebunga/gurmukhi-element": minor
+"@atthebunga/gurmukhi-mcp": minor
+---
+
+Phonetic layout: `a` after a consonant is now the inherent vowel. It writes nothing, and the vowel typed next is standalone, so `nirBau` gives ਨਿਰਭਉ and `gauRI` gives ਗਉੜੀ. Type `A` for the kanna ਾ (`vAhigurU` → ਵਾਹਿਗੁਰੂ; `vahigurU` now gives ਵਹਿਗੁਰੂ). Standalone `u` now gives ਉ instead of the bare carrier ੳ.

@@ -5,7 +5,7 @@ Real-time Gurmukhi phonetic input for **any framework or plain HTML**: type roma
 ## Plain HTML / CDN
 
 ```html
-<label>Search <gurmukhi-input id="q" placeholder="vahigurU"></gurmukhi-input></label>
+<label>Search <gurmukhi-input id="q" placeholder="vAhigurU"></gurmukhi-input></label>
 <gurmukhi-keyboard for="q"></gurmukhi-keyboard>
 
 <script type="module" src="https://cdn.jsdelivr.net/npm/@atthebunga/gurmukhi-element@0.1.0/dist/cdn.js"></script>

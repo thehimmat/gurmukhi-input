@@ -26,7 +26,12 @@ describe('resolveKeyboard', () => {
   });
 
   it('falls back to matras for context-sensitive layouts', () => {
-    expect(find(resolveKeyboard('phonetic', {}), 'KeyA').output).toBe('ਾ');
+    expect(find(resolveKeyboard('phonetic', { shift: true }), 'KeyA').output).toBe('ਾ');
+    expect(find(resolveKeyboard('phonetic', {}), 'KeyI').output).toBe('ਿ');
+  });
+
+  it('shows the inherent-vowel key as empty after a consonant', () => {
+    expect(find(resolveKeyboard('phonetic', {}), 'KeyA').output).toBe('');
   });
 
   it('leaves unmapped keys empty', () => {

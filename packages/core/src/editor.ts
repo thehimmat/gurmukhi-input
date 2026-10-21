@@ -11,8 +11,9 @@ export type EditState = {
   value: string;
   selectionStart: number;
   selectionEnd: number;
-  // Encoded layouts (igurbani): raw keys of the word being typed. Keep the
-  // composing from each result and pass it back with the next keydown.
+  // Encoded layouts (igurbani): raw keys of the word being typed. Phonetic:
+  // the inherent-vowel key just typed. Keep the composing from each result
+  // and pass it back with the next keydown.
   composing?: string;
 };
 
@@ -68,7 +69,8 @@ export function applyKeydown(
     };
   }
 
-  const next = splice(state, action.text);
+  const next: EditResult = splice(state, action.text);
+  if (action.composing) next.composing = action.composing;
   return action.endComposition ? { ...next, endComposition: true } : next;
 }
 
@@ -81,8 +83,10 @@ export function applyPaste(state: EditState, pasted: string, layout: Layout): Ed
 
   const textBefore = state.value.slice(0, state.selectionStart);
   let converted = '';
+  let afterInherent = false;
   for (const ch of pasted) {
-    const g = resolveKey(ch, textBefore + converted, layout);
+    const g = resolveKey(ch, textBefore + converted, layout, afterInherent);
+    afterInherent = g === '';
     converted += g ?? ch;
   }
   return splice(state, converted);

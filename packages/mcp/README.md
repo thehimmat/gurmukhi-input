@@ -4,7 +4,7 @@ An [MCP](https://modelcontextprotocol.io) server that gives Claude, or any MCP c
 
 | Tool | |
 |---|---|
-| `type_gurmukhi` | Roman keystrokes → Gurmukhi (`vahigurU` → ਵਾਹਿਗੁਰੂ), with the phonetic (default), igurbani (igurbani.com / GurbaniAkhar) or Gurmukhi QWERTY layout |
+| `type_gurmukhi` | Roman keystrokes → Gurmukhi (`vAhigurU` → ਵਾਹਿਗੁਰੂ), with the phonetic (default), igurbani (igurbani.com / GurbaniAkhar) or Gurmukhi QWERTY layout |
 | `gurmukhi_to_ipa` | IPA pronunciation, plus the phonetic key used for fuzzy matching |
 | `convert_legacy_font` | AnmolLipi/GurbaniAkhar, Asees, Joy, AnandpurSahib, Satluj or SONY text → Unicode, choosing the encoding from a font name if given |
 | `unicode_to_anmollipi` | Unicode → AnmolLipi keystrokes |

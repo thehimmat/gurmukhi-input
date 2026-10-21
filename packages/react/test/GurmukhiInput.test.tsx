@@ -35,7 +35,7 @@ function setup(props: Parameters<typeof Field>[0] = {}) {
 describe('GurmukhiInput', () => {
   it('converts typed keys', () => {
     const { input, type } = setup();
-    type('vahigurU');
+    type('vAhigurU');
     expect(input.value).toBe('ਵਾਹਿਗੁਰੂ');
   });
 
@@ -66,7 +66,7 @@ describe('GurmukhiInput', () => {
   it('converts pasted roman text', () => {
     const { input } = setup({ initial: 'ਕ' });
     input.selectionStart = input.selectionEnd = 1;
-    fireEvent.paste(input, { clipboardData: { getData: () => 'a' } });
+    fireEvent.paste(input, { clipboardData: { getData: () => 'A' } });
     expect(input.value).toBe('ਕਾ');
   });
 

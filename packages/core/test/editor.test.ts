@@ -36,9 +36,15 @@ describe('applyKeydown', () => {
   });
 
   it('uses only the text before the caret as vowel context', () => {
-    // caret is after ਕ, so 'a' becomes a matra even though ਅ follows
-    expect(applyKeydown(at('ਕ|ਅ'), key('a'), phonetic)).toEqual(at('ਕਾ|ਅ'));
+    // caret is after ਕ, so 'A' becomes a matra even though ਅ follows
+    expect(applyKeydown(at('ਕ|ਅ'), key('A'), phonetic)).toEqual(at('ਕਾ|ਅ'));
     expect(applyKeydown(at('|ਕ'), key('a'), phonetic)).toEqual(at('ਅ|ਕ'));
+  });
+
+  it('carries the inherent vowel to the next keydown as composing', () => {
+    const inherent = applyKeydown(at('ਭ|'), key('a'), phonetic);
+    expect(inherent).toEqual({ ...at('ਭ|'), composing: 'a' });
+    expect(applyKeydown(inherent!, key('u'), phonetic)).toEqual(at('ਭਉ|'));
   });
 
   it('returns null for keys the browser should handle', () => {
@@ -64,11 +70,12 @@ describe('applyKeydown', () => {
 
 describe('applyPaste', () => {
   it('converts pasted roman text with context', () => {
-    expect(applyPaste(at('|'), 'vahigurU', phonetic)).toEqual(at('ਵਾਹਿਗੁਰੂ|'));
+    expect(applyPaste(at('|'), 'vAhigurU', phonetic)).toEqual(at('ਵਾਹਿਗੁਰੂ|'));
+    expect(applyPaste(at('|'), 'nirBau', phonetic)).toEqual(at('ਨਿਰਭਉ|'));
   });
 
   it('uses the text before the caret as context', () => {
-    expect(applyPaste(at('ਕ|'), 'a', phonetic)).toEqual(at('ਕਾ|'));
+    expect(applyPaste(at('ਕ|'), 'A', phonetic)).toEqual(at('ਕਾ|'));
   });
 
   it('keeps unmapped characters', () => {

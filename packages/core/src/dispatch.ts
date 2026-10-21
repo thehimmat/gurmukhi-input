@@ -16,7 +16,9 @@ export type KeyEventLike = {
 export type KeydownAction =
   // endComposition: the key was a macOS dead key (Option+e, Option+u, …) and
   // the browser will still insert its accent mark — the caller must clean up.
-  | { type: 'insert'; text: string; endComposition?: boolean }
+  // composing: the key was the inherent vowel (text is ''); pass it back as
+  // opts.composing on the next keydown.
+  | { type: 'insert'; text: string; endComposition?: boolean; composing?: string }
   // Encoded layouts: replace the deleteBefore characters before the caret
   // with text. composing is the raw keys of the word so far; pass it back as
   // opts.composing on the next keydown.
@@ -76,7 +78,9 @@ export function resolveKeydown(
     return compose(e.key, textBefore, layout.encoded, opts?.composing);
   }
 
-  const text = resolveKey(e.key, textBefore, layout);
+  const afterInherent = !!layout.inherentKey && opts?.composing === layout.inherentKey;
+  const text = resolveKey(e.key, textBefore, layout, afterInherent);
+  if (text === '') return { type: 'insert', text, composing: e.key };
   if (text) return { type: 'insert', text };
   return { type: 'passthrough' };
 }

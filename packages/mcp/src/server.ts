@@ -46,8 +46,8 @@ export function createGurmukhiServer(opts: ServerOptions = {}): McpServer {
     title: 'Type Gurmukhi phonetically',
     description:
       'Convert roman keystrokes to Gurmukhi Unicode, as the @atthebunga/gurmukhi-input keyboard would. ' +
-      'phonetic layout (default): consonants k=ਕ K=ਖ g=ਗ, dentals q=ਤ z=ਦ, retroflex t=ਟ d=ਡ; vowels a i u e o (capital = long) ' +
-      'become matras after a consonant and standalone vowels elsewhere, e.g. "vahigurU" → ਵਾਹਿਗੁਰੂ. ' +
+      'phonetic layout (default): consonants k=ਕ K=ਖ g=ਗ, dentals q=ਤ z=ਦ, retroflex t=ਟ d=ਡ; vowels A i u e o (capital = long) ' +
+      'become matras after a consonant and standalone vowels elsewhere, e.g. "vAhigurU" → ਵਾਹਿਗੁਰੂ; a after a consonant is the inherent vowel, e.g. "nirBau" → ਨਿਰਭਉ. ' +
       'igurbani follows igurbani.com and the GurbaniAkhar font: sihari before its consonant, e.g. "vwihgurU" → ਵਾਹਿਗੁਰੂ, "<>" → ੴ. ' +
       'gurmukhi-qwerty follows the macOS Gurmukhi QWERTY keyboard. Text that is already Gurmukhi is returned unchanged.',
     inputSchema: { text: z.string().describe('Roman keystrokes to convert'), layout: LAYOUT.default('phonetic') },
@@ -124,7 +124,7 @@ export function createGurmukhiServer(opts: ServerOptions = {}): McpServer {
       `Search Sri Guru Granth Sahib, Dasam Bani and Bhai Gurdas's Vaaran on ${site.base}. Returns up to 20 lines per page ` +
       'with ang, writer, raag and English translation. Modes: contains (a Gurmukhi word or part of one), ' +
       'first_letter (first letters of consecutive words, e.g. ਸਨਕਪ), pattern (_ any letter, * any run, {velar} letter classes, (a|b)). ' +
-      'The query must be Gurmukhi; set typed to "phonetic" (e.g. "namu") or "anmollipi" (igurbani.com / GurbaniAkhar keys, e.g. "nwmu") to convert roman input first. ' +
+      'The query must be Gurmukhi; set typed to "phonetic" (e.g. "nAmu") or "anmollipi" (igurbani.com / GurbaniAkhar keys, e.g. "nwmu") to convert roman input first. ' +
       'Use list_search_filters for valid writer and raag names.',
     inputSchema: {
       query: z.string().min(1),
